@@ -1,0 +1,377 @@
+/*======================================================
+    LIGHT MODE THEME
+======================================================*/
+
+
+body.light-mode{
+
+
+    --primary:#20064b;
+    --secondary:#b30098;
+
+
+
+    --bg:#f5f7fb;
+
+    --bg-secondary:#ffffff;
+
+
+
+    --text:#111827;
+
+    --muted:#4b5563;
+
+
+
+    --card-bg:rgba(255,255,255,.85);
+
+    --card-border:rgba(0,0,0,.12);
+
+
+
+    --nav-bg:rgba(255,255,255,.85);
+
+    --menu-bg:rgba(255,255,255,.95);
+
+    --menu-border:rgba(0,0,0,.12);
+
+
+
+    --input-bg:rgba(0,0,0,.05);
+
+
+
+    --shadow:
+
+    0 10px 30px rgba(0,0,0,.12);
+
+}
+
+
+
+/*======================================================
+    BODY
+======================================================*/
+
+
+body.light-mode{
+
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+
+
+/*======================================================
+    HEADER
+======================================================*/
+
+
+body.light-mode header{
+
+
+    background:rgba(255,255,255,.8);
+
+    border-color:rgba(0,0,0,.1);
+
+}
+
+
+
+/*======================================================
+    NAVIGATION
+======================================================*/
+
+
+body.light-mode nav a,
+body.light-mode .logo h2,
+body.light-mode .mobile-menu a{
+
+
+    color:var(--text);
+
+}
+
+
+
+body.light-mode nav a:hover,
+body.light-mode .mobile-menu a:hover{
+
+
+    color:var(--primary);
+
+}
+
+
+
+/*======================================================
+    GLASS SYSTEM
+======================================================*/
+
+
+body.light-mode .glass{
+
+
+    background:rgba(255,255,255,.7);
+
+    border-color:rgba(0,0,0,.1);
+
+    color:#111;
+
+}
+
+
+
+/*======================================================
+    CARDS
+======================================================*/
+
+
+body.light-mode .project-card,
+body.light-mode .certificate-card,
+body.light-mode .stat,
+body.light-mode .about-card,
+body.light-mode .contact-card,
+body.light-mode .timeline-card{
+
+
+    background:var(--card-bg);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+/*======================================================
+    TEXT
+======================================================*/
+
+
+body.light-mode p{
+
+
+    color:#333;
+
+}
+
+
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4{
+
+
+    color:var(--text);
+
+}
+
+
+
+/*======================================================
+    INPUTS
+======================================================*/
+
+
+body.light-mode input,
+body.light-mode textarea{
+
+
+    background:var(--input-bg);
+
+    color:var(--text);
+
+    border-color:rgba(0,0,0,.12);
+
+}
+
+
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder{
+
+
+    color:#6b7280;
+
+}
+
+
+
+/*======================================================
+    TERMINAL
+======================================================*/
+
+
+body.light-mode .terminal{
+
+
+    background:rgba(255,255,255,.85);
+
+    border-color:rgba(0,0,0,.12);
+
+    box-shadow:
+
+    0 10px 35px rgba(0,0,0,.12);
+
+}
+
+
+
+body.light-mode .terminal-top{
+
+
+    background:#f3f4f6;
+
+    border-bottom:
+
+    1px solid rgba(0,0,0,.08);
+
+}
+
+
+
+body.light-mode .terminal-top p{
+
+
+    color:#6b7280;
+
+}
+
+
+
+body.light-mode .terminal-body pre{
+
+
+    color:#111827;
+
+}
+
+
+
+body.light-mode .green-text{
+
+
+    color:#008f5d;
+
+}
+
+
+
+/*======================================================
+    BUTTONS
+======================================================*/
+
+
+body.light-mode .btn-secondary{
+
+
+    background:rgba(0,0,0,.04);
+
+    color:var(--text);
+
+    border-color:rgba(0,0,0,.12);
+
+}
+
+
+
+body.light-mode .btn-secondary:hover{
+
+
+    color:var(--primary);
+
+    border-color:var(--primary);
+
+}
+
+
+
+/*======================================================
+    TAGS
+======================================================*/
+
+
+body.light-mode .project-tech span,
+body.light-mode .project-tags span,
+body.light-mode .profile-tags span,
+body.light-mode .tool-grid span{
+
+
+    background:rgba(0,0,0,.04);
+
+    border-color:rgba(0,0,0,.1);
+
+}
+
+
+
+/*======================================================
+    PROGRESS BAR
+======================================================*/
+
+
+body.light-mode .progress{
+
+
+    background:#d1d5db;
+
+}
+
+
+
+/*======================================================
+    SCROLLBAR
+======================================================*/
+
+
+body.light-mode ::-webkit-scrollbar-track{
+
+
+    background:#e5e7eb;
+
+}
+
+
+
+body.light-mode ::-webkit-scrollbar-thumb{
+
+
+    background:var(--primary);
+
+}
+
+
+
+/*======================================================
+    FOOTER
+======================================================*/
+
+
+body.light-mode footer{
+
+
+    background:#ffffff;
+
+    border-color:rgba(0,0,0,.1);
+
+}
+
+
+
+/*======================================================
+    SELECTION
+======================================================*/
+
+
+body.light-mode ::selection{
+
+
+    background:var(--primary);
+
+    color:white;
+
+}

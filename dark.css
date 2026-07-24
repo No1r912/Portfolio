@@ -1,0 +1,299 @@
+/*======================================================
+    DARK MODE THEME
+======================================================*/
+
+
+body.dark-mode{
+
+
+    --primary:#00ff9d;
+
+    --secondary:#00c8ff;
+
+
+
+    --bg:#050816;
+
+    --bg-secondary:#0b1221;
+
+
+
+    --text:#ffffff;
+
+    --muted:#9ca3af;
+
+
+
+    --card-bg:rgba(255,255,255,.06);
+
+    --card-border:rgba(255,255,255,.12);
+
+
+
+    --nav-bg:rgba(5,8,22,.75);
+
+    --menu-bg:rgba(10,15,30,.95);
+
+    --menu-border:rgba(255,255,255,.12);
+
+
+
+    --input-bg:rgba(255,255,255,.05);
+
+
+
+    --shadow:
+
+    0 10px 40px rgba(0,0,0,.45);
+
+}
+
+
+
+/*======================================================
+    BODY
+======================================================*/
+
+
+body.dark-mode{
+
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+
+
+/*======================================================
+    HEADER
+======================================================*/
+
+
+body.dark-mode header{
+
+
+    background:var(--nav-bg);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+/*======================================================
+    GLASS COMPONENTS
+======================================================*/
+
+
+body.dark-mode .glass{
+
+
+    background:var(--card-bg);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+/*======================================================
+    CARDS
+======================================================*/
+
+
+body.dark-mode .project-card,
+body.dark-mode .certificate-card,
+body.dark-mode .stat,
+body.dark-mode .about-card,
+body.dark-mode .contact-card,
+body.dark-mode .timeline-card{
+
+
+    background:var(--card-bg);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+/*======================================================
+    INPUTS
+======================================================*/
+
+
+body.dark-mode input,
+body.dark-mode textarea{
+
+
+    background:var(--input-bg);
+
+    color:var(--text);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{
+
+
+    color:var(--muted);
+
+}
+
+
+
+/*======================================================
+    BUTTONS
+======================================================*/
+
+
+body.dark-mode .btn-secondary{
+
+
+    background:var(--card-bg);
+
+    color:var(--text);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+/*======================================================
+    TERMINAL
+======================================================*/
+
+
+body.dark-mode .terminal{
+
+
+    background:var(--card-bg);
+
+    border-color:var(--card-border);
+
+}
+
+
+
+body.dark-mode .terminal-top{
+
+
+    background:var(--bg-secondary);
+
+}
+
+
+
+body.dark-mode .terminal-body pre{
+
+
+    color:var(--text);
+
+}
+
+
+
+/*======================================================
+    NAVIGATION
+======================================================*/
+
+
+body.dark-mode nav a,
+body.dark-mode .logo h2,
+body.dark-mode .mobile-menu a{
+
+
+    color:var(--text);
+
+}
+
+
+
+body.dark-mode nav a:hover,
+body.dark-mode .mobile-menu a:hover{
+
+
+    color:var(--primary);
+
+}
+
+
+
+/*======================================================
+    TAGS
+======================================================*/
+
+
+body.dark-mode .project-tech span,
+body.dark-mode .project-tags span,
+body.dark-mode .profile-tags span,
+body.dark-mode .tool-grid span{
+
+
+    background:rgba(255,255,255,.05);
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+
+
+/*======================================================
+    FOOTER
+======================================================*/
+
+
+body.dark-mode footer{
+
+
+    background:var(--bg-secondary);
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+
+
+/*======================================================
+    SCROLLBAR
+======================================================*/
+
+
+body.dark-mode ::-webkit-scrollbar-track{
+
+
+    background:#08101d;
+
+}
+
+
+
+body.dark-mode ::-webkit-scrollbar-thumb{
+
+
+    background:var(--primary);
+
+}
+
+
+
+/*======================================================
+    SELECTION
+======================================================*/
+
+
+body.dark-mode ::selection{
+
+
+    background:var(--primary);
+
+    color:#000;
+
+}

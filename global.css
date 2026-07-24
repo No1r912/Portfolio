@@ -1,0 +1,335 @@
+/*======================================================
+    GLOBAL STYLES
+======================================================*/
+
+
+/*======================================================
+    GLOBAL TRANSITIONS
+======================================================*/
+
+body,
+header,
+.glass,
+button,
+input,
+textarea{
+
+    transition:
+    background .35s ease,
+    color .35s ease,
+    border .35s ease;
+
+}
+
+
+
+/*======================================================
+    TYPOGRAPHY
+======================================================*/
+
+
+h1,
+h2,
+h3,
+h4{
+
+    color:var(--text);
+
+    font-family:var(--heading);
+
+}
+
+
+
+p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+}
+
+
+
+/*======================================================
+    GLOBAL SECTIONS
+======================================================*/
+
+
+section{
+
+    padding:120px 10%;
+
+    position:relative;
+
+    animation:fadeSection .8s ease;
+
+}
+
+
+
+/*======================================================
+    FOOTER GLOBAL
+======================================================*/
+
+
+footer{
+
+    background:var(--bg-secondary);
+
+}
+
+
+
+/*======================================================
+    PAGE BACKGROUND
+======================================================*/
+
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+
+    background:
+
+
+    radial-gradient(
+        circle at top left,
+        rgba(0,255,157,.15),
+        transparent 35%
+    ),
+
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(0,200,255,.15),
+        transparent 30%
+    ),
+
+
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,.02),
+        transparent 60%
+    );
+
+
+    z-index:-3;
+
+}
+
+
+
+
+/*======================================================
+    GRID BACKGROUND
+======================================================*/
+
+
+.background-grid{
+
+    position:fixed;
+
+    inset:0;
+
+
+    background-image:
+
+
+    linear-gradient(
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    ),
+
+
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.03) 1px,
+        transparent 1px
+    );
+
+
+    background-size:40px 40px;
+
+
+    z-index:-2;
+
+
+    mask-image:
+
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,.9),
+        transparent
+    );
+
+}
+
+
+
+/*======================================================
+    MOUSE GLOW
+======================================================*/
+
+
+.mouse-glow{
+
+
+    position:fixed;
+
+
+    width:400px;
+
+
+    height:400px;
+
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(0,255,157,.18),
+        transparent 70%
+    );
+
+
+    pointer-events:none;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    z-index:-1;
+
+
+}
+
+
+
+/*======================================================
+    CURSOR GLOW
+======================================================*/
+
+
+.cursor-glow{
+
+
+    position:fixed;
+
+
+    width:220px;
+
+
+    height:220px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(0,255,157,.12),
+        transparent 70%
+    );
+
+
+    pointer-events:none;
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+    z-index:-1;
+
+
+}
+
+
+
+/*======================================================
+    PARTICLES
+======================================================*/
+
+
+#particles-js{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    z-index:-5;
+
+
+    opacity:.45;
+
+
+}
+
+
+
+/*======================================================
+    SCROLL PROGRESS
+======================================================*/
+
+
+.scroll-progress{
+
+
+    position:fixed;
+
+
+    top:0;
+
+
+    left:0;
+
+
+    width:0;
+
+
+    height:3px;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+
+    z-index:99999;
+
+
+}
+
+
+
+/*======================================================
+    UTILITY
+======================================================*/
+
+
+html,
+body{
+
+    max-width:100%;
+
+    overflow-x:hidden;
+
+}

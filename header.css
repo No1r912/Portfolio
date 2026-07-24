@@ -1,0 +1,334 @@
+/*======================================================
+    HEADER
+======================================================*/
+
+
+header{
+
+    position:fixed;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+
+    width:90%;
+
+    max-width:1350px;
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+    padding:16px 40px;
+
+
+    background:var(--nav-bg);
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:1px solid var(--card-border);
+
+
+    border-radius:18px;
+
+
+    z-index:1000;
+
+
+    transition:var(--transition);
+
+}
+
+
+
+header.scrolled{
+
+    top:10px;
+
+    padding:12px 35px;
+
+    background:var(--nav-bg);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+/*======================================================
+    LOGO
+======================================================*/
+
+
+.logo h2{
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+}
+
+
+
+.logo span{
+
+    color:var(--primary);
+
+}
+
+
+
+/*======================================================
+    NAVIGATION
+======================================================*/
+
+
+nav ul{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+
+
+nav ul li a{
+
+    position:relative;
+
+    color:var(--text);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+
+
+nav ul li a:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+nav ul li a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0%;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:var(--transition);
+
+}
+
+
+
+nav ul li a:hover::after{
+
+    width:100%;
+
+}
+
+
+
+/*======================================================
+    ACTIVE LINK
+======================================================*/
+
+
+nav ul li a.active{
+
+    color:var(--primary);
+
+}
+
+
+
+nav ul li a.active::after{
+
+    width:100%;
+
+}
+
+
+
+/*======================================================
+    HEADER BUTTONS
+======================================================*/
+
+
+.header-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.theme-btn,
+.menu-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    background:var(--glass);
+
+    color:var(--text);
+
+
+    transition:var(--transition);
+
+}
+
+
+
+.theme-btn:hover,
+.menu-btn:hover{
+
+    background:var(--primary);
+
+    color:var(--button-text);
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/*======================================================
+    MOBILE MENU BUTTON
+======================================================*/
+
+
+.menu-btn{
+
+    display:none;
+
+}
+
+
+
+/*======================================================
+    MOBILE MENU
+======================================================*/
+
+
+.mobile-menu{
+
+    position:fixed;
+
+    top:95px;
+
+    right:-100%;
+
+
+    width:280px;
+
+
+    background:var(--menu-bg);
+
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    border:1px solid var(--menu-border);
+
+
+    border-radius:18px;
+
+
+    padding:25px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+
+    gap:20px;
+
+
+    transition:var(--transition);
+
+
+    z-index:999;
+
+}
+
+
+
+.mobile-menu.active{
+
+    right:20px;
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateX(0);
+
+}
+
+
+
+.mobile-menu a{
+
+    color:var(--text);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+
+
+.mobile-menu a:hover{
+
+    color:var(--primary);
+
+    padding-left:10px;
+
+}

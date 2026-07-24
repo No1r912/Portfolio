@@ -1,0 +1,279 @@
+/*======================================================
+    CONTACT SECTION
+======================================================*/
+
+
+.contact-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1.2fr;
+
+    gap:40px;
+
+    align-items:start;
+
+}
+
+
+
+/*======================================================
+    CONTACT BOXES
+======================================================*/
+
+
+.contact-info,
+.contact-form{
+
+    padding:40px;
+
+}
+
+
+
+.contact-info h3,
+.contact-form h3{
+
+    font-size:2rem;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/*======================================================
+    CONTACT CARD
+======================================================*/
+
+
+.contact-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+
+    margin-bottom:25px;
+
+
+    padding:20px;
+
+
+    border-radius:15px;
+
+
+    background:var(--glass);
+
+
+    border:1px solid var(--border);
+
+
+    transition:var(--transition);
+
+}
+
+
+
+.contact-card:hover{
+
+    transform:translateX(10px);
+
+
+    border-color:var(--primary-soft);
+
+
+    box-shadow:
+
+    0 0 20px var(--glow);
+
+}
+
+
+
+.contact-card i{
+
+    width:55px;
+
+
+    height:55px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    background:var(--primary-soft);
+
+
+    color:var(--primary);
+
+
+    font-size:1.3rem;
+
+}
+
+
+
+.contact-card h4{
+
+    margin-bottom:5px;
+
+}
+
+
+
+/*======================================================
+    AVAILABILITY
+======================================================*/
+
+
+.availability{
+
+    margin-top:30px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    font-weight:600;
+
+}
+
+
+
+.online-dot{
+
+    width:12px;
+
+
+    height:12px;
+
+
+    border-radius:50%;
+
+
+    background:var(--success);
+
+
+    animation:pulse 2s infinite;
+
+}
+
+
+
+/*======================================================
+    CONTACT FORM
+======================================================*/
+
+
+.input-group{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.input-group input,
+.input-group textarea{
+
+
+    width:100%;
+
+
+    padding:18px 20px;
+
+
+    background:var(--input-bg);
+
+
+    border:1px solid var(--border);
+
+
+    border-radius:15px;
+
+
+    color:var(--text);
+
+
+    font-size:1rem;
+
+
+    transition:var(--transition);
+
+}
+
+
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+
+    border-color:var(--primary);
+
+
+    box-shadow:
+
+    0 0 15px var(--glow);
+
+}
+
+
+
+.input-group textarea{
+
+
+    resize:none;
+
+}
+
+
+
+/*======================================================
+    RESPONSIVE
+======================================================*/
+
+
+@media(max-width:992px){
+
+
+    .contact-container{
+
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+
+@media(max-width:600px){
+
+
+    .contact-info,
+    .contact-form{
+
+
+        padding:25px;
+
+    }
+
+}

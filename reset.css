@@ -1,0 +1,285 @@
+/*======================================================
+    RESET CSS
+======================================================*/
+
+
+/* GLOBAL RESET */
+
+*,
+*::before,
+*::after{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+/* HTML */
+
+html{
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:var(--primary) var(--bg);
+
+}
+
+
+/* BODY */
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    position:relative;
+
+    font-family:var(--body);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    -webkit-font-smoothing:antialiased;
+
+    -moz-osx-font-smoothing:grayscale;
+}
+
+
+/* REMOVE DEFAULT LIST STYLE */
+
+ul,
+ol{
+
+    list-style:none;
+
+}
+
+
+/* LINKS */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+/* IMAGES */
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+    display:block;
+
+    height:auto;
+
+    object-fit:cover;
+
+}
+
+.logo img{
+
+    width:50px;
+
+}
+
+
+/* BUTTON RESET */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    background:none;
+
+    transition:var(--transition);
+
+}
+
+
+/* FORM RESET */
+
+input,
+textarea,
+select{
+
+    outline:none;
+
+    border:none;
+
+    font-family:inherit;
+
+}
+
+
+/* TEXT */
+
+p{
+
+    line-height:1.8;
+
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family:var(--heading);
+
+    color:var(--text);
+
+}
+
+
+/* REMOVE TABLE DEFAULT */
+
+table{
+
+    border-collapse:collapse;
+
+    border-spacing:0;
+
+}
+
+
+/* QUOTES */
+
+blockquote,
+q{
+
+    quotes:none;
+
+}
+
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after{
+
+    content:"";
+
+}
+
+
+/* SCROLLBAR CHROME */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    background:var(--bg);
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:50px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#00d181;
+
+}
+
+
+/* TEXT SELECTION */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#000;
+
+}
+
+
+/* FOCUS ACCESSIBILITY */
+
+:focus-visible{
+
+    outline:2px solid var(--primary);
+
+    outline-offset:4px;
+
+}
+
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none!important;
+
+        transition:none!important;
+
+        scroll-behavior:auto!important;
+
+    }
+
+}
+
+
+/* PRINT RESET */
+
+@media print{
+
+
+    header,
+    footer,
+    #loader,
+    .mouse-glow,
+    .cursor-glow,
+    .background-grid{
+
+        display:none!important;
+
+    }
+
+
+    body{
+
+        background:white;
+
+        color:black;
+
+    }
+
+
+}

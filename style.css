@@ -1,0 +1,36 @@
+/* CORE */
+
+@import url("reset.css");
+@import url("variables.css");
+
+@import url("global.css");
+
+
+/* COMPONENTS */
+
+@import url("components.css");
+@import url("animations.css");
+
+
+/* SECTIONS */
+
+@import url("header.css");
+@import url("hero.css");
+@import url("about.css");
+@import url("skills.css");
+@import url("projects.css");
+@import url("education.css");
+@import url("certificates.css");
+@import url("contact.css");
+@import url("footer.css");
+
+
+/* RESPONSIVE */
+
+@import url("responsive.css");
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    transition:.35s ease;
+}

@@ -1,0 +1,508 @@
+/*======================================================
+    FLOAT ANIMATION
+======================================================*/
+
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+.floating{
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+
+
+/*======================================================
+    GLOW ANIMATION
+======================================================*/
+
+
+@keyframes glow{
+
+
+    0%{
+
+        box-shadow:
+
+        0 0 10px rgba(var(--primary-rgb),.25);
+
+    }
+
+
+    50%{
+
+        box-shadow:
+
+        0 0 30px rgba(var(--primary-rgb),.45);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+
+        0 0 10px rgba(var(--primary-rgb),.25);
+
+    }
+
+}
+
+
+
+.glow{
+
+    animation:glow 2.5s infinite;
+
+}
+
+
+
+/*======================================================
+    SCROLL DOWN
+======================================================*/
+
+
+@keyframes scrollDown{
+
+    0%{
+
+        opacity:0;
+
+        top:8px;
+
+    }
+
+
+    50%{
+
+        opacity:1;
+
+    }
+
+
+    100%{
+
+        opacity:0;
+
+        top:24px;
+
+    }
+
+}
+
+
+
+/*======================================================
+    STATUS PULSE
+======================================================*/
+
+
+@keyframes statusPulse{
+
+
+    0%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--warning-rgb),.55);
+
+    }
+
+
+    70%{
+
+        box-shadow:
+
+        0 0 0 8px rgba(var(--warning-rgb),0);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--warning-rgb),0);
+
+    }
+
+}
+
+
+
+/*======================================================
+    PROGRESS DOT PULSE
+======================================================*/
+
+
+@keyframes progressPulse{
+
+
+    0%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--warning-rgb),.6);
+
+    }
+
+
+    70%{
+
+        box-shadow:
+
+        0 0 0 8px rgba(var(--warning-rgb),0);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--warning-rgb),0);
+
+    }
+
+}
+
+
+
+/*======================================================
+    CONTACT ONLINE PULSE
+======================================================*/
+
+
+@keyframes pulse{
+
+
+    0%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--primary-rgb),.6);
+
+    }
+
+
+    70%{
+
+        box-shadow:
+
+        0 0 0 12px rgba(var(--primary-rgb),0);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+
+        0 0 0 0 rgba(var(--primary-rgb),0);
+
+    }
+
+}
+
+
+
+/*======================================================
+    ICON FLOAT
+======================================================*/
+
+
+.socials a,
+.footer-social a,
+.floating-social a{
+
+    animation:
+
+    iconFloat 5s ease-in-out infinite;
+
+}
+
+
+
+.socials a:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+
+.socials a:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+
+.socials a:nth-child(4){
+
+    animation-delay:.6s;
+
+}
+
+
+
+@keyframes iconFloat{
+
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:translateY(-6px);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/*======================================================
+    SECTION REVEAL
+======================================================*/
+
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(80px);
+
+    transition:.9s ease;
+
+}
+
+
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+
+.reveal-left{
+
+    opacity:0;
+
+    transform:translateX(-80px);
+
+    transition:.9s ease;
+
+}
+
+
+
+.reveal-left.active{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
+
+
+
+.reveal-right{
+
+    opacity:0;
+
+    transform:translateX(80px);
+
+    transition:.9s ease;
+
+}
+
+
+
+.reveal-right.active{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
+
+
+
+.reveal-scale{
+
+    opacity:0;
+
+    transform:scale(.9);
+
+    transition:.8s ease;
+
+}
+
+
+
+.reveal-scale.active{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+
+
+/*======================================================
+    RIPPLE EFFECT
+======================================================*/
+
+
+.ripple{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    transform:scale(0);
+
+    animation:ripple .6s linear;
+
+    background:rgba(var(--white-rgb),.35);
+
+    pointer-events:none;
+
+}
+
+
+
+@keyframes ripple{
+
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}
+
+
+
+/*======================================================
+    LOADER EXIT
+======================================================*/
+
+
+.loader-hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+}
+
+
+
+/*======================================================
+    BUTTON RIPPLE
+======================================================*/
+
+
+.btn-primary::before,
+.btn-secondary::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:0;
+
+    border-radius:50%;
+
+    background:rgba(var(--white-rgb),.25);
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    transition:.45s;
+
+}
+
+
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before{
+
+    width:300px;
+
+    height:300px;
+
+}
+
+
+
+/*======================================================
+    REDUCED MOTION
+======================================================*/
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+*,
+*::before,
+*::after{
+
+    animation:none!important;
+
+    transition:none!important;
+
+}
+
+}

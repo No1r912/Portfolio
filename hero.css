@@ -1,0 +1,523 @@
+/*======================================================
+    HERO SECTION
+======================================================*/
+
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:80px;
+
+    padding-top:120px;   /* reduced from 180px */
+
+    position:relative;
+
+}
+
+
+
+.hero-left{
+
+    flex:1;
+
+    transform:translateY(-35px); /* move content upward */
+
+}
+
+
+
+.hero-right{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    transform:translateY(-20px); /* move terminal slightly up */
+
+}
+
+/*======================================================
+    HERO AVAILABILITY STATUS
+======================================================*/
+
+.hero .status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 20px;
+
+    margin-bottom:25px; /* add spacing before heading */
+
+    border-radius:50px;
+
+    background:rgba(0,255,157,.12);
+
+    border:1px solid rgba(0,255,157,.35);
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 20px rgba(0,255,157,.15);
+
+    animation:statusGlow 2s infinite alternate;
+
+}
+
+
+.hero .status::first-letter{
+
+    color:var(--primary);
+
+}
+
+
+/* glowing animation */
+
+@keyframes statusGlow{
+
+    from{
+
+        box-shadow:
+        0 0 10px rgba(0,255,157,.15);
+
+    }
+
+
+    to{
+
+        box-shadow:
+        0 0 25px rgba(0,255,157,.45);
+
+    }
+
+}
+
+
+
+/*======================================================
+    HERO TEXT
+======================================================*/
+
+
+.hero h1{
+
+    font-size:4.5rem;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.hero h1 span{
+
+    color:var(--primary);
+
+}
+
+
+
+.hero h3{
+
+    font-size:1.8rem;
+
+    margin-bottom:25px;
+
+    color:var(--muted);
+
+}
+
+
+
+#typing-text{
+
+    color:var(--secondary);
+
+    font-family:var(--mono);
+
+}
+
+
+
+.hero p{
+
+    max-width:620px;
+
+    margin-bottom:40px;
+
+    font-size:1.05rem;
+
+}
+
+
+
+/*======================================================
+    HERO BUTTONS
+======================================================*/
+
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:45px;
+
+}
+
+
+
+/*======================================================
+    SOCIAL ICONS
+======================================================*/
+
+
+.socials{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+
+
+.socials a{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    font-size:1.2rem;
+
+    transition:var(--transition);
+
+}
+
+
+
+.socials a:hover{
+
+    background:var(--primary);
+
+    color:var(--button-text);
+
+    box-shadow:
+
+    0 0 25px var(--glow);
+
+    transform:translateY(-8px);
+
+}
+
+
+
+/*======================================================
+    TERMINAL
+======================================================*/
+
+
+.terminal{
+
+    width:100%;
+
+    max-width:600px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--card-border);
+
+    box-shadow:
+
+    0 0 35px var(--glow);
+
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    animation:float 6s ease-in-out infinite;
+
+    transition:var(--transition);
+
+}
+
+
+
+.terminal:hover{
+
+    border-color:var(--primary-soft);
+
+    box-shadow:
+
+    0 0 45px var(--glow);
+
+}
+
+
+
+/*======================================================
+    TERMINAL HEADER
+======================================================*/
+
+
+.terminal-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:16px 20px;
+
+    background:var(--bg-secondary);
+
+    border-bottom:1px solid var(--card-border);
+
+}
+
+
+
+.terminal-top p{
+
+    margin-left:12px;
+
+    color:var(--muted);
+
+    font-family:var(--mono);
+
+    font-size:.9rem;
+
+}
+
+
+
+/*======================================================
+    TERMINAL BODY
+======================================================*/
+
+
+.terminal-body{
+
+    padding:30px;
+
+}
+
+
+
+.terminal-body pre{
+
+    font-family:var(--mono);
+
+    color:var(--text);
+
+    line-height:2;
+
+    font-size:.95rem;
+
+    white-space:pre-wrap;
+
+}
+
+
+
+.green-text{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+
+
+/*======================================================
+    SCROLL INDICATOR
+======================================================*/
+
+
+.scroll-indicator{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+
+
+.scroll-indicator span{
+
+    display:block;
+
+    width:28px;
+
+    height:48px;
+
+    border:2px solid var(--border);
+
+    border-radius:20px;
+
+    position:relative;
+
+}
+
+
+
+.scroll-indicator span::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:8px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:6px;
+
+    height:10px;
+
+    background:var(--primary);
+
+    border-radius:50px;
+
+    animation:scrollDown 2s infinite;
+
+}
+
+
+
+@keyframes scrollDown{
+
+
+    0%{
+
+        opacity:0;
+
+        top:8px;
+
+    }
+
+
+    50%{
+
+        opacity:1;
+
+    }
+
+
+    100%{
+
+        opacity:0;
+
+        top:24px;
+
+    }
+
+}
+
+
+
+/*======================================================
+    HERO GLOW EFFECT
+======================================================*/
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    background:var(--primary-soft);
+
+    filter:blur(100px);
+
+    top:80px;
+
+    right:100px;
+
+    border-radius:50%;
+
+    z-index:-1;
+
+}
+
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    background:var(--secondary-soft);
+
+    filter:blur(100px);
+
+    bottom:80px;
+
+    left:80px;
+
+    border-radius:50%;
+
+    z-index:-1;
+
+}
