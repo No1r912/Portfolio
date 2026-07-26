@@ -760,6 +760,46 @@ const searchInput = document.getElementById("project-search");
 let currentFilter = "all";
 
 /*======================================================
+    PROJECT EXPAND SYSTEM
+======================================================*/
+
+const expandButtons = document.querySelectorAll(".expand-project");
+
+
+expandButtons.forEach(button => {
+
+    button.addEventListener("click", function(){
+
+        const project = this.closest(
+            ".project-card, .featured-project"
+        );
+
+
+        project.classList.toggle("active");
+
+
+        if(project.classList.contains("active")){
+
+            this.innerHTML = `
+            <i class="fas fa-eye-slash"></i>
+            Hide Details
+            `;
+
+        }
+        else{
+
+            this.innerHTML = `
+            <i class="fas fa-eye"></i>
+            View Details
+            `;
+
+        }
+
+    });
+
+});
+
+/*======================================================
     FILTER FUNCTION
 ======================================================*/
 
