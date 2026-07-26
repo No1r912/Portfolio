@@ -432,14 +432,30 @@
 
 
 
-.project-info .project-buttons .expand-project,
-.project-info .project-buttons .btn-secondary{
+/* =========================================
+   PROJECT ACTION BUTTON SIZE
+========================================= */
 
-    padding:10px 18px;
+.project-buttons .expand-project,
+.project-buttons .btn-secondary{
+
+    height:45px;
+
+    padding:0 22px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    border-radius:50px;
 
     font-size:.9rem;
 
-    border-radius:50px;
+    font-weight:600;
 
 }
 
@@ -458,8 +474,6 @@
     justify-content:center;
 
     gap:10px;
-
-    padding:12px 26px;
 
     border-radius:999px;
 

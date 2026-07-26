@@ -1321,3 +1321,24 @@ function stickyHeader(){
     }
 
 }
+
+/*======================================================
+    skills dropdown
+======================================================*/
+
+const skillButtons = document.querySelectorAll(".skill-dropdown");
+
+
+skillButtons.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const skill = button.parentElement;
+
+
+        skill.classList.toggle("active");
+
+
+    });
+
+});
