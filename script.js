@@ -1237,21 +1237,22 @@ comingProjects.forEach(card => {
 
 
 /*======================================================
-    NOVA IMAGE SLIDER
+    IMAGE SLIDER
 ======================================================*/
 
-const novaSlider = document.querySelector(".nova-slider");
+document.querySelectorAll(".lab-slider").forEach(slider => {
+
+    const imageElement = slider.querySelector(".project-slider");
 
 
-if(novaSlider){
+    if(!imageElement || !slider.dataset.images){
+        return;
+    }
 
 
-    const imageElement = novaSlider.querySelector(".project-slider");
-
-
-    const images = novaSlider.dataset.images
-    .split(",")
-    .map(img => img.trim());
+    const images = slider.dataset.images
+        .split(",")
+        .map(img => img.trim());
 
 
     let index = 0;
@@ -1269,6 +1270,8 @@ if(novaSlider){
 
         }
 
+
+        // fade out
 
         imageElement.style.opacity = "0";
 
@@ -1294,7 +1297,7 @@ if(novaSlider){
 
 
 
-}
+});
 
 
 /*======================================================
