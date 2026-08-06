@@ -944,7 +944,7 @@
 
 
 /* =========================================
-   TEXT
+TEXT
 ========================================= */
 
 
@@ -1167,13 +1167,11 @@
 }
 
 
-
 .status:hover{
 
     transform:translateY(-4px);
 
 }
-
 
 
 .status-dot{
@@ -1187,6 +1185,9 @@
 }
 
 
+/* =========================
+   COMPLETED
+========================= */
 
 .status.completed{
 
@@ -1197,18 +1198,19 @@
 }
 
 
-
 .status.completed .status-dot{
 
     background:var(--success);
 
-    box-shadow:
-
-    0 0 8px var(--success);
+    box-shadow:0 0 8px var(--success);
 
 }
 
 
+
+/* =========================
+   IN PROGRESS
+========================= */
 
 .status.in-progress{
 
@@ -1219,12 +1221,95 @@
 }
 
 
-
 .status.in-progress .status-dot{
 
     background:var(--warning);
 
     animation:progressPulse 2s infinite;
+
+}
+
+
+
+/* =========================
+   PLANNED
+========================= */
+
+.status.planned{
+
+    color:#60a5fa;
+
+    background:rgba(96,165,250,.1);
+
+}
+
+
+.status.planned .status-dot{
+
+    background:#60a5fa;
+
+}
+
+
+
+/* =========================
+   ON HOLD
+========================= */
+
+.status.on-hold{
+
+    color:#a78bfa;
+
+    background:rgba(167,139,250,.1);
+
+}
+
+
+.status.on-hold .status-dot{
+
+    background:#a78bfa;
+
+}
+
+
+
+/* =========================
+   ARCHIVED
+========================= */
+
+.status.archived{
+
+    color:#94a3b8;
+
+    background:rgba(148,163,184,.1);
+
+}
+
+
+.status.archived .status-dot{
+
+    background:#94a3b8;
+
+}
+
+
+
+/* =========================
+FAILED / DISCONTINUED
+========================= */
+
+.status.failed{
+
+    color:#ff6b6b;
+
+    background:rgba(255,107,107,.1);
+
+}
+
+
+.status.failed .status-dot{
+
+    background:#ff6b6b;
 
 }
 
