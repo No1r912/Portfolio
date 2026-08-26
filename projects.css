@@ -612,433 +612,800 @@
 
 }
 
-/* =========================================
+/* =========================================================
    ADVANCED PROJECT EXPAND SYSTEM
-========================================= */
+   CYBER DOSSIER STYLE
+========================================================= */
 
+.project-details {
+    position: relative;
 
-.project-details{
+    max-height: 0;
+    overflow: hidden;
 
-    position:relative;
+    opacity: 0;
+    visibility: hidden;
 
-    max-height:0;
+    transform: translateY(-20px) scaleY(0.96);
+    transform-origin: top;
 
-    overflow:hidden;
-
-    opacity:0;
-
-    transform:translateY(-30px);
-
-    padding:0 40px;
+    padding: 0 40px;
 
     background:
+        radial-gradient(
+            circle at 15% 10%,
+            var(--primary-soft),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            var(--secondary-soft),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
 
-    linear-gradient(
-        145deg,
-        rgba(0,255,157,.08),
-        rgba(0,0,0,.25)
-    );
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 
-    border-left:1px solid transparent;
-
-    border-right:1px solid transparent;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.03);
 
     transition:
+        max-height .8s cubic-bezier(.22,1,.36,1),
+        opacity .45s ease,
+        visibility .45s ease,
+        transform .65s cubic-bezier(.22,1,.36,1),
+        padding .65s cubic-bezier(.22,1,.36,1),
+        margin .65s cubic-bezier(.22,1,.36,1),
+        border-color .4s ease;
 
-    max-height .8s cubic-bezier(.4,0,.2,1),
-    opacity .5s ease,
-    transform .6s ease,
-    padding .6s ease,
-    border .4s ease;
-
+    isolation: isolate;
 }
 
 
+/* =========================================================
+   ACTIVE EXPANDED STATE
+========================================================= */
 
-/* =========================================
-   FEATURED PROJECT DETAILS
-========================================= */
+.project-card.active .project-details,
+.featured-project.active + .project-details {
 
+    max-height: 1800px;
 
-.featured-project.active + .project-details{
+    opacity: 1;
+    visibility: visible;
 
+    transform: translateY(0) scaleY(1);
 
-    max-height:1500px;
+    padding: 42px 45px;
 
+    margin-top: -1px;
+    margin-bottom: 55px;
 
-    opacity:1;
-
-
-    transform:translateY(0);
-
-
-    padding:45px;
-
-
-    margin-top:-35px;
-
-
-    margin-bottom:70px;
-
-
-    border-left:
-
-    1px solid var(--primary);
-
-
-    border-right:
-
-    1px solid var(--primary);
-
-
-    border-bottom:
-
-    1px solid var(--card-border);
-
-
+    border-left: 1px solid var(--primary);
+    border-right: 1px solid var(--primary);
+    border-bottom: 1px solid var(--card-border);
 
     box-shadow:
+        0 25px 70px rgba(0,0,0,.35),
+        0 0 40px var(--primary-soft),
+        inset 0 0 45px rgba(0,255,157,.025);
 
-    0 0 40px rgba(0,255,157,.15),
-    inset 0 0 40px rgba(0,255,157,.05);
-
-
-
-    backdrop-filter:blur(20px);
-
-
+    backdrop-filter: blur(20px);
 }
 
 
+/* =========================================================
+   TOP TERMINAL HEADER
+========================================================= */
 
-/* =========================================
-   TOP TERMINAL BAR EFFECT
-========================================= */
+.project-details::before {
 
+    content: "SYSTEM REPORT  //  PROJECT ANALYSIS";
 
-.featured-project.active + .project-details::before{
+    display: flex;
+    align-items: center;
 
+    height: 38px;
 
-    content:"SYSTEM REPORT // PROJECT ANALYSIS";
+    margin-bottom: 32px;
 
+    padding: 0 14px;
 
-    display:block;
+    border-bottom: 1px solid var(--card-border);
 
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary-soft),
+            transparent
+        );
 
-    font-family:"JetBrains Mono";
+    color: var(--primary);
 
+    font-family: var(--mono);
+    font-size: .65rem;
 
-    font-size:.75rem;
+    letter-spacing: 2px;
 
+    opacity: 0;
 
-    letter-spacing:3px;
+    transform: translateX(-15px);
 
-
-    color:var(--primary);
-
-
-    padding-bottom:20px;
-
-
-    margin-bottom:30px;
-
-
-    border-bottom:
-
-    1px solid var(--card-border);
-
-
+    transition:
+        opacity .4s ease .25s,
+        transform .5s ease .25s;
 }
 
 
+.project-card.active .project-details::before,
+.featured-project.active + .project-details::before {
 
-/* =========================================
-   SCAN LINE ANIMATION
-========================================= */
+    opacity: 1;
 
-
-.featured-project.active + .project-details::after{
-
-
-    content:"";
+    transform: translateX(0);
+}
 
 
-    position:absolute;
+/* =========================================================
+   TERMINAL STATUS DOT
+========================================================= */
 
+.project-details::after {
 
-    top:0;
+    content: "";
 
-    left:0;
+    position: absolute;
 
+    top: 0;
+    left: 0;
 
-    width:100%;
+    width: 100%;
+    height: 2px;
 
-    height:2px;
-
-
-    background:var(--primary);
-
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary),
+        var(--secondary),
+        transparent
+    );
 
     box-shadow:
+        0 0 12px var(--primary),
+        0 0 25px var(--primary-soft);
 
-    0 0 20px var(--primary);
+    opacity: 0;
 
+    transform: translateY(0);
+
+    pointer-events: none;
+}
+
+
+.project-card.active .project-details::after,
+.featured-project.active + .project-details::after {
+
+    opacity: 1;
 
     animation:
-
-    scanLine 2s infinite;
-
-
+        projectScan 2.5s ease-in-out infinite;
 }
 
 
+@keyframes projectScan {
 
-@keyframes scanLine{
-
-
-    0%{
-
-        transform:translateY(0);
-
-        opacity:0;
-
+    0% {
+        transform: translateY(0);
+        opacity: 0;
     }
 
-
-    20%{
-
-        opacity:1;
-
+    15% {
+        opacity: 1;
     }
 
-
-    80%{
-
-        opacity:1;
-
+    70% {
+        opacity: .8;
     }
 
-
-    100%{
-
-        transform:translateY(250px);
-
-        opacity:0;
-
+    100% {
+        transform: translateY(500px);
+        opacity: 0;
     }
-
-
 }
 
 
+/* =========================================================
+   DETAIL CONTENT ENTRANCE
+========================================================= */
 
-/* =========================================
-   NORMAL PROJECT CARD
-========================================= */
+.project-details > * {
 
+    opacity: 0;
 
-.project-card.active .project-details{
+    transform: translateY(15px);
 
-
-    max-height:1200px;
-
-
-    opacity:1;
-
-
-    transform:translateY(0);
-
-
-    padding:35px;
-
-
-    border-top:
-
-    1px solid var(--primary);
-
-
+    transition:
+        opacity .4s ease,
+        transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 
+.project-card.active .project-details > *,
+.featured-project.active + .project-details > * {
 
-/* =========================================
-   DETAIL TITLES
-========================================= */
+    opacity: 1;
 
-
-.project-details h4{
-
-
-    font-family:"JetBrains Mono";
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-    color:var(--primary);
-
-
-    font-size:1rem;
-
-
-    letter-spacing:1px;
-
-
-    margin:
-
-    30px 0 15px;
-
-
+    transform: translateY(0);
 }
 
 
+/* stagger effect */
 
-.project-details h4:first-child{
+.project-card.active .project-details > *:nth-child(1) {
+    transition-delay: .10s;
+}
 
-    margin-top:0;
+.project-card.active .project-details > *:nth-child(2) {
+    transition-delay: .15s;
+}
 
+.project-card.active .project-details > *:nth-child(3) {
+    transition-delay: .20s;
+}
+
+.project-card.active .project-details > *:nth-child(4) {
+    transition-delay: .25s;
+}
+
+.project-card.active .project-details > *:nth-child(5) {
+    transition-delay: .30s;
 }
 
 
+/* =========================================================
+   SECTION TITLES
+========================================================= */
 
-.project-details h4::before{
+.project-details h4 {
 
+    position: relative;
 
-    content:"$";
+    display: flex;
+    align-items: center;
 
+    gap: 12px;
 
-    display:flex;
+    margin: 32px 0 16px;
 
+    color: var(--primary);
 
-    align-items:center;
+    font-family: var(--mono);
 
+    font-size: .85rem;
 
-    justify-content:center;
+    font-weight: 600;
 
+    letter-spacing: 1.5px;
 
-    width:25px;
-
-    height:25px;
-
-
-    border-radius:50%;
-
-
-    background:var(--primary);
-
-
-    color:#000;
-
-
-    font-weight:bold;
-
-
+    text-transform: uppercase;
 }
 
 
-
-/* =========================================
-TEXT
-========================================= */
-
-
-.project-details p{
-
-
-    color:var(--muted);
-
-
-    line-height:1.9;
-
-
+.project-details h4:first-child {
+    margin-top: 0;
 }
 
 
+/* =========================================================
+   TERMINAL PROMPT ICON
+========================================================= */
 
-.project-details ul{
+.project-details h4::before {
 
+    content: "$";
 
-    list-style:none;
+    width: 27px;
+    height: 27px;
 
+    flex-shrink: 0;
 
-    padding:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border: 1px solid var(--primary);
 
+    border-radius: 7px;
+
+    background: var(--primary-soft);
+
+    color: var(--primary);
+
+    font-family: var(--mono);
+
+    font-size: .75rem;
+
+    box-shadow:
+        0 0 12px var(--primary-soft);
+
+    transition: .3s ease;
 }
 
 
+.project-details h4:hover::before {
 
-.project-details li{
+    background: var(--primary);
+
+    color: #000;
+
+    box-shadow:
+        0 0 20px var(--glow);
+
+    transform: rotate(90deg);
+}
 
 
-    padding:12px 15px;
+/* =========================================================
+   TITLE UNDERLINE
+========================================================= */
 
+.project-details h4::after {
 
-    margin-bottom:10px;
+    content: "";
 
+    flex: 1;
+
+    height: 1px;
 
     background:
+        linear-gradient(
+            90deg,
+            var(--primary-soft),
+            transparent
+        );
 
-    rgba(255,255,255,.03);
-
-
-    border-left:
-
-    3px solid var(--primary);
-
-
-    color:var(--text);
-
-
-    transition:.3s;
-
-
+    opacity: .7;
 }
 
 
+/* =========================================================
+   PARAGRAPHS
+========================================================= */
 
-.project-details li:hover{
+.project-details p {
+
+    margin: 0 0 18px;
+
+    color: var(--muted);
+
+    font-size: .85rem;
+
+    line-height: 1.9;
+
+    max-width: 900px;
+}
 
 
-    transform:translateX(8px);
+/* =========================================================
+   LIST
+========================================================= */
 
+.project-details ul {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.project-details li {
+
+    position: relative;
+
+    padding: 13px 16px 13px 42px;
+
+    margin: 0;
+
+    border: 1px solid var(--card-border);
+
+    border-left: 2px solid var(--primary);
+
+    border-radius: 8px;
 
     background:
+        linear-gradient(
+            90deg,
+            var(--primary-soft),
+            rgba(255,255,255,.015)
+        );
 
-    rgba(0,255,157,.08);
+    color: var(--text);
 
+    font-size: .78rem;
 
+    line-height: 1.6;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
 }
 
 
+/* terminal bullet */
 
-/* =========================================
+.project-details li::before {
+
+    content: "›";
+
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--primary);
+
+    font-family: var(--mono);
+
+    font-weight: 700;
+
+    font-size: 1rem;
+}
+
+
+.project-details li:hover {
+
+    transform: translateX(6px);
+
+    border-color: var(--primary);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary-soft),
+            rgba(255,255,255,.03)
+        );
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.15),
+        0 0 15px var(--primary-soft);
+}
+
+
+/* =========================================================
    TECH STACK
-========================================= */
+========================================================= */
+
+.project-details .project-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
 
 
-.project-details .project-tags span{
+.project-details .project-tags span {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 7px 11px;
+
+    border: 1px solid var(--primary-soft);
+
+    border-radius: 6px;
 
     background:
+        linear-gradient(
+            135deg,
+            var(--primary-soft),
+            rgba(255,255,255,.02)
+        );
 
-    rgba(0,255,157,.08);
+    color: var(--primary);
+
+    font-family: var(--mono);
+
+    font-size: .62rem;
+
+    letter-spacing: .5px;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
 
 
-    border:
+.project-details .project-tags span:hover {
 
-    1px solid var(--primary);
+    transform: translateY(-3px);
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 15px var(--primary-soft);
+}
 
 
-    color:var(--primary);
+/* =========================================================
+   OPTIONAL INFORMATION GRID
+
+   Works if you have:
+
+   <div class="detail-grid">
+       <div>...</div>
+       <div>...</div>
+   </div>
+========================================================= */
+
+.project-details .detail-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin: 22px 0;
+}
 
 
+.project-details .detail-item {
+
+    padding: 16px;
+
+    border: 1px solid var(--card-border);
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,.025);
+
+    transition: .3s ease;
+}
+
+
+.project-details .detail-item:hover {
+
+    border-color: var(--primary);
+
+    background: var(--primary-soft);
+
+    transform: translateY(-2px);
+}
+
+
+.project-details .detail-item small {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--primary);
+
+    font-family: var(--mono);
+
+    font-size: .58rem;
+
+    letter-spacing: 1px;
+}
+
+
+.project-details .detail-item strong {
+
+    color: var(--text);
+
+    font-size: .78rem;
+}
+
+
+/* =========================================================
+   CODE / TERMINAL BLOCK
+========================================================= */
+
+.project-details pre {
+
+    position: relative;
+
+    overflow-x: auto;
+
+    margin: 20px 0;
+
+    padding: 20px;
+
+    border: 1px solid var(--card-border);
+
+    border-radius: 10px;
+
+    background:
+        rgba(0,0,0,.35);
+
+    color: var(--primary);
+
+    font-family: var(--mono);
+
+    font-size: .7rem;
+
+    line-height: 1.8;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.25);
+}
+
+
+.project-details code {
+
+    font-family: var(--mono);
+
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.project-details hr {
+
+    height: 1px;
+
+    margin: 30px 0;
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--primary-soft),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .project-details {
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .project-card.active .project-details,
+    .featured-project.active + .project-details {
+
+        padding: 30px 22px;
+
+        margin-bottom: 40px;
+    }
+
+
+    .project-details::before {
+
+        font-size: .55rem;
+
+        letter-spacing: 1.2px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .project-details h4 {
+
+        font-size: .75rem;
+
+        letter-spacing: 1px;
+    }
+
+
+    .project-details p {
+
+        font-size: .78rem;
+
+        line-height: 1.8;
+    }
+
+
+    .project-details li {
+
+        padding: 11px 13px 11px 36px;
+
+        font-size: .72rem;
+    }
+
+
+    .project-details li::before {
+
+        left: 13px;
+    }
+
+
+    .project-details .detail-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .project-card.active .project-details,
+    .featured-project.active + .project-details {
+
+        padding: 25px 16px;
+    }
+
+
+    .project-details h4 {
+
+        gap: 8px;
+
+        font-size: .7rem;
+    }
+
+
+    .project-details h4::before {
+
+        width: 23px;
+        height: 23px;
+    }
+
+
+    .project-details .project-tags span {
+
+        font-size: .57rem;
+
+        padding: 6px 8px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .project-details,
+    .project-details > *,
+    .project-details h4::before {
+
+        transition: none !important;
+    }
+
+    .project-details::after {
+
+        animation: none !important;
+    }
 }
 
 /*======================================================

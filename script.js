@@ -1345,3 +1345,194 @@ skillButtons.forEach(button=>{
     });
 
 });
+
+/* ====================================================== */
+/* CONTACT / SECURE CHANNEL JAVASCRIPT */
+/* ====================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const secureHub = document.querySelector('.secure-hub');
+
+    if (!secureHub) return;
+
+
+    /* ================================================== */
+    /* SCROLL REVEAL */
+    /* ================================================== */
+
+    const contactObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) return;
+
+                secureHub.classList.add('contact-visible');
+
+                observer.unobserve(secureHub);
+
+            });
+
+        },
+        {
+            threshold: 0.18
+        }
+    );
+
+    contactObserver.observe(secureHub);
+
+
+    /* ================================================== */
+    /* CONNECTION NODES */
+    /* ================================================== */
+
+    const nodes = secureHub.querySelectorAll(
+        '.connection-node'
+    );
+
+    const nodeLines = {
+        'node-email': '.line-email',
+        'node-github': '.line-github',
+        'node-linkedin': '.line-linkedin',
+        'node-discord': '.line-discord'
+    };
+
+
+    nodes.forEach(node => {
+
+        node.addEventListener('mouseenter', () => {
+
+            node.classList.add('node-active');
+
+            Object.keys(nodeLines).forEach(nodeClass => {
+
+                if (!node.classList.contains(nodeClass)) return;
+
+                const line = secureHub.querySelector(
+                    nodeLines[nodeClass]
+                );
+
+                if (line) {
+                    line.classList.add('line-active');
+                }
+
+            });
+
+        });
+
+
+        node.addEventListener('mouseleave', () => {
+
+            node.classList.remove('node-active');
+
+            Object.values(nodeLines).forEach(selector => {
+
+                const line = secureHub.querySelector(selector);
+
+                if (line) {
+                    line.classList.remove('line-active');
+                }
+
+            });
+
+        });
+
+    });
+
+
+    /* ================================================== */
+    /* CORE INTERACTION */
+    /* ================================================== */
+
+    const core = secureHub.querySelector('.core-center');
+
+    if (core) {
+
+        core.addEventListener('mouseenter', () => {
+            core.classList.add('core-active');
+        });
+
+        core.addEventListener('mouseleave', () => {
+            core.classList.remove('core-active');
+        });
+
+    }
+
+
+    /* ================================================== */
+    /* CONTACT INFORMATION HOVER */
+    /* ================================================== */
+
+    const infoItems = secureHub.querySelectorAll(
+        '.info-item'
+    );
+
+
+    infoItems.forEach(item => {
+
+        item.addEventListener('mouseenter', () => {
+            item.classList.add('info-active');
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.classList.remove('info-active');
+        });
+
+    });
+
+
+    /* ================================================== */
+    /* CV / RESUME BUTTON */
+    /* ================================================== */
+
+    const cvButton = secureHub.querySelector(
+        '.cv-download'
+    );
+
+
+    if (cvButton) {
+
+        cvButton.addEventListener('click', () => {
+
+            cvButton.classList.add('download-active');
+
+            setTimeout(() => {
+                cvButton.classList.remove('download-active');
+            }, 500);
+
+        });
+
+    }
+
+
+    /* ================================================== */
+    /* KEYBOARD ACCESSIBILITY */
+    /* ================================================== */
+
+    nodes.forEach(node => {
+
+        node.addEventListener('focus', () => {
+            node.classList.add('node-active');
+        });
+
+        node.addEventListener('blur', () => {
+            node.classList.remove('node-active');
+        });
+
+    });
+
+
+    /* ================================================== */
+    /* REDUCED MOTION */
+    /* ================================================== */
+
+    const reducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    );
+
+    if (reducedMotion.matches) {
+        secureHub.classList.add('reduced-motion');
+    }
+
+});
