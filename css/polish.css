@@ -48,7 +48,6 @@ header::before {
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(120deg, rgba(255,255,255,.20), transparent 38%, rgba(0,200,255,.17));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
