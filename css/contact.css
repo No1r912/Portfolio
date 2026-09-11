@@ -1432,15 +1432,15 @@
     }
 
     .contact-left {
-        min-height: 530px;
+        min-height: 0;
     }
 
     .connection-core {
-        min-height: 530px;
+        min-height: 0;
     }
 
     .connection-node {
-        width: calc(100% - 30px);
+        width: auto;
 
         padding: 11px;
     }
@@ -1474,5 +1474,154 @@
         animation-duration: .01ms !important;
         animation-delay: 0ms !important;
         transition-duration: .01ms !important;
+    }
+}
+
+/* ======================================================
+   TOUCH LAYOUT
+   Replace the desktop network diagram with a practical,
+   easy-to-scan list before the layout gets crowded.
+   ====================================================== */
+@media (max-width: 760px) {
+
+    .contact.section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hub-main {
+        padding: 16px;
+    }
+
+    .hub-identity {
+        margin-bottom: 16px;
+        padding: 15px;
+    }
+
+    .contact-left,
+    .connection-core {
+        min-height: 0;
+    }
+
+    .connection-core {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 10px;
+        padding: 18px;
+    }
+
+    .core-ring,
+    .connection-line {
+        display: none;
+    }
+
+    .core-center {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 76px;
+        height: 76px;
+        margin: 0 0 4px;
+    }
+
+    .connection-node,
+    .node-email,
+    .node-github,
+    .node-linkedin,
+    .node-discord {
+        position: relative;
+        inset: auto;
+        width: auto;
+        max-width: none;
+        min-height: 76px;
+        padding: 12px;
+        transform: none;
+    }
+
+    .connection-node:hover,
+    .node-email:hover,
+    .node-github:hover,
+    .node-linkedin:hover,
+    .node-discord:hover {
+        transform: translateY(-2px);
+    }
+
+    .node-status,
+    .node-arrow {
+        display: none;
+    }
+
+    .node-info strong {
+        overflow-wrap: anywhere;
+        white-space: normal;
+        text-overflow: clip;
+    }
+
+    .contact-info-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        padding: 14px;
+    }
+
+    .info-item {
+        min-height: 78px;
+        padding: 12px;
+    }
+
+    .info-item strong {
+        overflow-wrap: anywhere;
+        white-space: normal;
+        text-overflow: clip;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hub-header {
+        padding: 14px 16px;
+    }
+
+    .hub-system {
+        font-size: .6rem;
+    }
+
+    .hub-identity {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+
+    .identity-status {
+        grid-column: 1 / -1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .connection-core,
+    .contact-info-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .connection-node {
+        min-height: 64px;
+    }
+
+    .contact-info-header {
+        padding: 16px;
+    }
+
+    .contact-info-header h3 {
+        font-size: 1rem;
+    }
+
+    .hub-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: 10px;
+        padding: 14px 16px;
+    }
+
+    .hub-footer div:last-child {
+        grid-column: 1 / -1;
     }
 }

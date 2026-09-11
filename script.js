@@ -190,15 +190,26 @@ window.addEventListener("load", () => {
 });
 
 
-window.addEventListener("scroll", () => {
+let scrollFrame = null;
 
-    stickyHeader();
-    activeNav();
-    updateProgressBar();
-    toggleBackToTop();
-    revealOnScroll();
+function handleScroll(){
 
-});
+    if(scrollFrame) return;
+
+    scrollFrame = requestAnimationFrame(() => {
+
+        stickyHeader();
+        activeNav();
+        updateProgressBar();
+        toggleBackToTop();
+        revealOnScroll();
+        scrollFrame = null;
+
+    });
+
+}
+
+window.addEventListener("scroll", handleScroll, { passive:true });
 
 /*======================================================
     SMOOTH SCROLL
@@ -237,8 +248,11 @@ navLinks.forEach(link => {
 /* GLOBAL ELEMENTS */
 
 const header = document.querySelector("header");
-const sections = document.querySelectorAll("section");
-const links = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section[id]");
+const links = document.querySelectorAll("nav a, .mobile-menu a");
+const compactExperience = window.matchMedia(
+    "(max-width: 768px), (prefers-reduced-motion: reduce)"
+).matches;
 
 const backToTop = document.getElementById("backToTop");
 
@@ -368,15 +382,20 @@ counters.forEach(counter=>{
 
 function activeNav(){
 
-    let current = "";
+    if(!sections.length) return;
+
+    // Start from the first navigable section. This prevents unlinked content
+    // (such as the stats block) from clearing the current navigation state.
+    let current = sections[0].id;
+    const marker = window.scrollY + (header?.offsetHeight || 0) + 80;
 
     sections.forEach(section => {
 
-        const sectionTop = section.offsetTop - 150;
+        const sectionTop = section.offsetTop;
 
-        if(window.scrollY >= sectionTop){
+        if(marker >= sectionTop){
 
-            current = section.getAttribute("id");
+            current = section.id;
 
         }
 
@@ -398,6 +417,9 @@ function activeNav(){
 
 }
 
+// Mark the initial section before the first scroll event occurs.
+activeNav();
+
 
 
 
@@ -417,6 +439,8 @@ if(menuBtn){
 menuBtn.addEventListener("click", () => {
 
     mobileMenu.classList.toggle("active");
+
+    menuBtn.setAttribute("aria-expanded", mobileMenu.classList.contains("active"));
 
     const icon = menuBtn.querySelector("i");
 
@@ -450,6 +474,7 @@ mobileLinks.forEach(link => {
 
         if(mobileMenu){
             mobileMenu.classList.remove("active");
+            menuBtn?.setAttribute("aria-expanded", "false");
         }
 
         if(menuBtn){
@@ -483,6 +508,7 @@ document.addEventListener("click", (event) => {
     ){
 
         mobileMenu.classList.remove("active");
+        menuBtn?.setAttribute("aria-expanded", "false");
 
         const icon = menuBtn.querySelector("i");
 
@@ -502,6 +528,7 @@ document.addEventListener("keydown", (event) => {
     if(event.key === "Escape"){
 
         mobileMenu.classList.remove("active");
+        menuBtn?.setAttribute("aria-expanded", "false");
 
         const icon = menuBtn.querySelector("i");
 
@@ -667,8 +694,6 @@ const revealOnScroll = () => {
     });
 
 };
-
-window.addEventListener("scroll", revealOnScroll);
 
 window.addEventListener("load", revealOnScroll);
 
@@ -1099,23 +1124,26 @@ function updateProgressBar(){
 
 const glow = document.querySelector(".mouse-glow");
 
-document.addEventListener("mousemove", (e) => {
+if(!compactExperience && window.matchMedia("(pointer: fine)").matches){
 
-    if(glow){
+    document.addEventListener("mousemove", (e) => {
 
-        glow.style.left = e.clientX + "px";
+        if(glow){
 
-        glow.style.top = e.clientY + "px";
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
 
-    }
+        }
 
-});
+    }, { passive:true });
+
+}
 
 /*======================================================
     PARTICLES.JS
 ======================================================*/
 
-if(typeof particlesJS !== "undefined"){
+if(!compactExperience && typeof particlesJS !== "undefined"){
 
     particlesJS("particles-js",{
 
@@ -1534,5 +1562,61 @@ document.addEventListener('DOMContentLoaded', () => {
     if (reducedMotion.matches) {
         secureHub.classList.add('reduced-motion');
     }
+
+});
+
+/* ======================================================
+   LIGHTWEIGHT VIEWPORT FADE-INS
+   ====================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const fadeTargets = document.querySelectorAll([
+        ".section-title",
+        ".about-card",
+        ".about-content",
+        ".stat",
+        ".skills-left",
+        ".skills-right",
+        ".project-toolbar",
+        ".featured-project",
+        ".project-grid",
+        ".timeline-item",
+        ".accordion-item",
+        ".secure-hub",
+        "footer"
+    ].join(","));
+
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    fadeTargets.forEach((element, index) => {
+        element.classList.add("fade-in");
+        element.style.setProperty("--fade-delay", `${(index % 4) * 70}ms`);
+    });
+
+    if(reduceMotion || !("IntersectionObserver" in window)){
+        fadeTargets.forEach(element => element.classList.add("is-visible"));
+        return;
+    }
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if(!entry.isIntersecting) return;
+
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+
+        });
+
+    }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -36px"
+    });
+
+    fadeTargets.forEach(element => fadeObserver.observe(element));
 
 });

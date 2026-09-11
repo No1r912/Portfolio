@@ -107,13 +107,13 @@
 
         <div class="header-buttons">
 
-            <button id="theme-toggle" class="theme-btn">
+            <button id="theme-toggle" class="theme-btn" aria-label="Switch colour theme" title="Switch colour theme">
 
                 <i class="fa-solid fa-moon"></i>
                 
             </button>
 
-            <button class="menu-btn">
+            <button class="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
 
                 <i class="fa-solid fa-bars"></i>
 
@@ -151,6 +151,12 @@
 
     <section class="hero" id="home">
 
+        <div class="hero-orbits" aria-hidden="true">
+            <span class="orbit-object orbit-one"><i class="fas fa-code"></i></span>
+            <span class="orbit-object orbit-two"><i class="fas fa-shield-halved"></i></span>
+            <span class="orbit-object orbit-three"></span>
+        </div>
+
         <div class="hero-left">
 
             <span class="status">
@@ -163,7 +169,7 @@
 
                 Hi, I'm
 
-                <span>Hazwan</span>
+                <span class="glitch" data-text="Hazwan">Hazwan</span>
 
             </h1>
 
@@ -203,13 +209,13 @@
 
             <div class="socials">
 
-                <a href="github.com/No1r912">
+                <a href="https://github.com/No1r912" aria-label="Visit Hazwan's GitHub profile" target="_blank" rel="noopener noreferrer">
 
                     <i class="fab fa-github"></i>
 
                 </a>
 
-                <a href="https://www.linkedin.com/in/hazwan-khairol-b69534423">
+                <a href="https://www.linkedin.com/in/hazwan-khairol-b69534423" aria-label="Visit Hazwan's LinkedIn profile" target="_blank" rel="noopener noreferrer">
 
                     <i class="fab fa-linkedin"></i>
 
@@ -321,7 +327,7 @@ Learning...
 
             <div class="profile-image">
 
-                <img src="Images/profile.jpg" alt="Hazwan">
+                <img loading="lazy" decoding="async" src="Images/profile.jpg" alt="Hazwan">
 
             </div>
 
@@ -928,7 +934,7 @@ Learning...
             <div class="project-image lab-slider"
             data-images="Images/nova/ai.png,Images/nova/chat.png,Images/nova/memory.png,Images/nova/setup.png,Images/nova/structure.png,Images/nova/voice.png">
 
-                <img 
+                <img loading="lazy" decoding="async"
                 class="project-slider"
                 src="Images/nova/setup.png"
                 alt="Nova AI Assistant">
@@ -1041,7 +1047,7 @@ Learning...
                 <div class="project-image lab-slider"
                 data-images="Images/teahaven/home.png,Images/teahaven/about.png,Images/teahaven/promotions.png,Images/teahaven/contact.png,Images/teahaven/gallery.png,Images/teahaven/chalux.png,Images/teahaven/guhe.png,Images/teahaven/dehoja.png,Images/teahaven/gongcha.png,Images/teahaven/tealive.png">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/teahaven/setup.png"
                     alt="Tea Haven Website Development Evidence">
 
@@ -1109,7 +1115,7 @@ Learning...
                 <div class="project-image lab-slider"
                 data-images="Images/CyberSecurity-Home-Lab/kali-linux.png,Images/CyberSecurity-Home-Lab/check-system-update.png,Images/CyberSecurity-Home-Lab/successful-system-update.png,Images/CyberSecurity-Home-Lab/update-system.png,Images/CyberSecurity-Home-Lab/verify-system-update.png">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/CyberSecurity-Home-Lab/kali-linux.png">
 
                 </div>
@@ -1177,7 +1183,7 @@ Learning...
                 data-images="Images/Networking-Lab/check-connection1.png,Images/Networking-Lab/check-connection2.png,Images/Networking-Lab/cisco-real-time-simulation.png,Images/Networking-Lab/device-configuration.png,Images/Networking-Lab/ospf-configuration.png,
                 Images/Networking-Lab/ping-connection.png,Images/Networking-Lab/ping-request-through-pc.png,Images/Networking-Lab/router-configuration.png">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/Networking-Lab/check-connection1.png">
 
                 </div>
@@ -1247,7 +1253,7 @@ Learning...
                 Images/System-Administration-Lab/permission-management.png,Images/System-Administration-Lab/group-management1.png,Images/System-Administration-Lab/group-management2.png,Images/System-Administration-Lab/file-permission-management1.png,Images/System-Administration-Lab/user-permission-management2.png,Images/System-Administration-Lab/check-permission.png,
                 Images/System-Administration-Lab/check-file-permission1.png,Images/System-Administration-Lab/check-file-permission2.png,Images/System-Administration-Lab/change-file-permission.png">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/system-admin/setup.png"
                     alt="System Administrator Lab Evidence">
 
@@ -1314,7 +1320,7 @@ Learning...
                 <div class="project-image lab-slider"
                 data-images="">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/security-testing/setup.png"
                     alt="Website Security Testing Lab Evidence">
 
@@ -1380,7 +1386,7 @@ Learning...
                 <div class="project-image lab-slider"
                 data-images="Images/Password-Strength-Checker/setup.png,Images/Password-Strength-Checker/code-evidence1.png,Images/Password-Strength-Checker/code-evidence2.png">
 
-                    <img class="project-slider"
+                    <img loading="lazy" decoding="async" class="project-slider"
                     src="Images/password-checker/setup.png"
                     alt="Password Strength Checker Development Evidence">
 
@@ -1443,7 +1449,7 @@ Learning...
             <div class="project-image lab-slider"
             data-images="Images/IT-Support-Simulation-Lab/ram-installed.jpeg,Images/IT-Support-Simulation-Lab/storage-space.png,Images/IT-Support-Simulation-Lab/system-verification.png">
 
-                <img class="project-slider"
+                <img loading="lazy" decoding="async" class="project-slider"
                 src="Images/it-support/setup.png"
                 alt="IT Support Project Evidence">
 
@@ -1780,7 +1786,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/cisco1.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/cisco1.png" alt="">
 
                         <h4>Introduction to Cybersecurity</h4>
 
@@ -1792,7 +1798,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/cisco2.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/cisco2.png" alt="">
 
                         <h4>Networking Basics</h4>
 
@@ -1804,7 +1810,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/cisco3.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/cisco3.png" alt="">
 
                         <h4>Linux Essentials</h4>
 
@@ -1848,7 +1854,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/google1.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/google1.png" alt="">
 
                         <h4>Google AI Essentials</h4>
 
@@ -1893,7 +1899,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/microsoft.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/microsoft.png" alt="">
 
                         <h4>Microsoft Learn</h4>
 
@@ -1938,7 +1944,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/thm.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/thm.png" alt="">
 
                         <h4>Pre Security</h4>
 
@@ -1983,7 +1989,7 @@ Learning...
 
                     <div class="certificate-card">
 
-                        <img src="Images/certificates/coursera.png" alt="">
+                        <img loading="lazy" decoding="async" src="Images/certificates/coursera.png" alt="">
 
                         <h4>Course Certificate</h4>
 
@@ -2058,7 +2064,7 @@ Learning...
 
                 <div class="identity-image">
 
-                    <img
+                    <img loading="lazy" decoding="async"
                         src="Images/profile.jpg"
                         alt="Hazwan">
 
@@ -2608,7 +2614,7 @@ Learning...
         ×
     </span>
 
-    <img id="viewer-image">
+    <img loading="lazy" decoding="async" id="viewer-image">
 
 </div>
 

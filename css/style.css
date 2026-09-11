@@ -28,6 +28,7 @@
 /* RESPONSIVE */
 
 @import url("responsive.css");
+@import url("polish.css");
 
 body{
     background:var(--bg);
