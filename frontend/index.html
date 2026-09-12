@@ -22,37 +22,38 @@
 <body>
 
     <!-- Loading Screen -->
-
-    <!-- ========================= -->
-    <!-- Loading Screen -->
-    <!-- ========================= -->
-
-    <div id="loader">
+    <div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio" aria-busy="true">
 
         <div class="loader-terminal">
 
             <div class="terminal-header">
-                <span class="red"></span>
-                <span class="yellow"></span>
-                <span class="green"></span>
+                <div class="terminal-controls" aria-hidden="true">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </div>
+                <span class="loader-window-title">hazwan@portfolio:~</span>
             </div>
 
             <div class="loader-body">
 
-                <p id="loader-text">Initializing system...</p>
+                <div class="loader-meta">
+                    <span><i class="loader-indicator" aria-hidden="true"></i> SYSTEM BOOT</span>
+                    <span id="loader-percentage">0%</span>
+                </div>
 
-                <div class="loading-bar">
+                <p id="loader-text">Preparing portfolio interface...</p>
+
+                <div class="loading-bar" role="progressbar" aria-label="Portfolio loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                     <span></span>
                 </div>
 
-
-
-                <p>✓ HTML Loaded</p>
-                <p>✓ CSS Loaded</p>
-                <p>✓ JavaScript Loaded</p>
-                <p>✓ Cyber Modules Loaded</p>
-
-                <br>
+                <ul class="loader-checklist" aria-label="Loading steps">
+                    <li data-loader-step>Interface loaded</li>
+                    <li data-loader-step>Visual assets ready</li>
+                    <li data-loader-step>Interactive modules online</li>
+                    <li data-loader-step>Secure session established</li>
+                </ul>
 
                 <p class="access">Waiting...</p>
 

@@ -5,8 +5,8 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 
 const PORT = Number(process.env.PORT) || 3000;
-const ROOT = path.resolve(__dirname, "..");
-const DATA_DIRECTORY = path.join(__dirname, "data");
+const FRONTEND_DIRECTORY = path.resolve(__dirname, "..", "frontend");
+const DATA_DIRECTORY = path.resolve(__dirname, "..", "data");
 const MESSAGES_FILE = path.join(DATA_DIRECTORY, "messages.json");
 const MAX_BODY_SIZE = 10 * 1024;
 const MIME_TYPES = { ".css": "text/css; charset=utf-8", ".html": "text/html; charset=utf-8", ".js": "application/javascript; charset=utf-8", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml", ".webp": "image/webp" };
@@ -74,8 +74,8 @@ async function handleContact(request, response) {
 
 function serveStatic(request, response) {
     const requestedPath = request.url === "/" ? "/index.html" : decodeURIComponent(request.url.split("?")[0]);
-    const filePath = path.resolve(ROOT, `.${requestedPath}`);
-    if (!filePath.startsWith(ROOT + path.sep) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+    const filePath = path.resolve(FRONTEND_DIRECTORY, `.${requestedPath}`);
+    if (!filePath.startsWith(FRONTEND_DIRECTORY + path.sep) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
         response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
         return response.end("Not found");
     }

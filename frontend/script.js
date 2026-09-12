@@ -85,106 +85,96 @@ window.addEventListener("load", () => {
 
     const loader = document.getElementById("loader");
     const progress = document.querySelector(".loading-bar span");
+    const progressTrack = document.querySelector(".loading-bar");
+    const percentage = document.getElementById("loader-percentage");
     const access = document.querySelector(".access");
     const text = document.getElementById("loader-text");
+    const steps = [...document.querySelectorAll("[data-loader-step]")];
 
 
     // Stop if loader elements don't exist
-    if(!loader || !progress || !access || !text){
+    if(!loader || !progress || !progressTrack || !percentage || !access || !text){
         return;
     }
 
-
-    const messages = [
-        "Initializing system...",
-        "Loading modules...",
-        "Connecting to secure server...",
-        "Scanning environment...",
-        "Encrypting session...",
-        "Access verification..."
+    const stages = [
+        { message: "Preparing portfolio interface...", progress: 18 },
+        { message: "Loading visual assets...", progress: 43 },
+        { message: "Starting interactive modules...", progress: 71 },
+        { message: "Establishing secure session...", progress: 92 },
+        { message: "System ready.", progress: 100 }
     ];
 
+    const setProgress = (value) => {
+        const roundedValue = Math.round(value);
+        progress.style.transform = `scaleX(${value / 100})`;
+        progressTrack.setAttribute("aria-valuenow", roundedValue);
+        percentage.textContent = `${roundedValue}%`;
+    };
 
-    let percent = 0;
-    let index = 0;
+    const animateProgress = (from, to, duration) => new Promise((resolve) => {
+        const startTime = performance.now();
+        progress.classList.add("is-animating");
 
+        const tick = (currentTime) => {
+            const elapsed = Math.min((currentTime - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - elapsed, 4);
+            setProgress(from + (to - from) * eased);
 
+            if (elapsed < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                progress.classList.remove("is-animating");
+                resolve();
+            }
+        };
 
-    // Text animation
+        requestAnimationFrame(tick);
+    });
 
-    const messageInterval = setInterval(() => {
+    const updateMessage = (message) => {
+        text.classList.remove("is-updating");
+        void text.offsetWidth;
+        text.textContent = message;
+        text.classList.add("is-updating");
+    };
 
+    const finish = () => {
+        access.textContent = "ACCESS GRANTED";
+        loader.setAttribute("aria-busy", "false");
 
-        if(index < messages.length){
+        window.setTimeout(() => {
+            loader.classList.add("loader-hide");
+            window.setTimeout(() => { loader.hidden = true; }, 650);
+        }, 350);
+    };
 
-            text.textContent = messages[index];
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        steps.forEach((step) => step.classList.add("is-complete"));
+        updateMessage(stages.at(-1).message);
+        setProgress(100);
+        finish();
+        return;
+    }
 
-            index++;
+    const runLoader = async () => {
+        let currentProgress = 0;
 
+        for (const [index, stage] of stages.entries()) {
+            updateMessage(stage.message);
+            await animateProgress(currentProgress, stage.progress, index === stages.length - 1 ? 480 : 540);
+            currentProgress = stage.progress;
+            steps[index - 1]?.classList.add("is-complete");
+
+            if (index < stages.length - 1) {
+                await new Promise((resolve) => window.setTimeout(resolve, 100));
+            }
         }
 
-        else{
+        finish();
+    };
 
-            clearInterval(messageInterval);
-
-        }
-
-
-    },450);
-
-
-
-    // Progress animation
-
-    const loading = setInterval(() => {
-
-
-        percent++;
-
-
-        progress.style.width = percent + "%";
-
-
-
-        if(percent >= 100){
-
-
-            clearInterval(loading);
-
-
-
-            access.textContent = "ACCESS GRANTED";
-
-
-
-            setTimeout(() => {
-
-
-
-                loader.classList.add("loader-hide");
-
-
-
-                setTimeout(() => {
-
-
-
-                    loader.style.display = "none";
-
-
-
-                },800);
-
-
-
-            },900);
-
-
-
-        }
-
-
-    },25);
+    runLoader();
 
 
 });
