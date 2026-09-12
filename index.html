@@ -2447,6 +2447,33 @@ Learning...
 
                     </div>
 
+                    <form class="contact-form" id="contact-form" novalidate>
+                        <span class="info-label">SEND A MESSAGE</span>
+
+                        <div class="form-row">
+                            <label>
+                                <span>Name</span>
+                                <input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required>
+                            </label>
+
+                            <label>
+                                <span>Email</span>
+                                <input type="email" name="email" autocomplete="email" maxlength="254" required>
+                            </label>
+                        </div>
+
+                        <label>
+                            <span>Message</span>
+                            <textarea name="message" rows="4" minlength="10" maxlength="2000" required></textarea>
+                        </label>
+
+                        <button type="submit" class="contact-submit">
+                            <i class="fas fa-paper-plane"></i> Send Transmission
+                        </button>
+
+                        <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+                    </form>
+
                 </div>
 
             </div>
@@ -2627,6 +2654,7 @@ Learning...
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <script src="script.js"></script>
+<script src="contact-form.js"></script>
 
 </body>
 
