@@ -5,7 +5,7 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 
 const PORT = Number(process.env.PORT) || 3000;
-const FRONTEND_DIRECTORY = path.resolve(__dirname, "..", "frontend");
+const FRONTEND_DIRECTORY = path.resolve(__dirname, "..");
 const DATA_DIRECTORY = path.resolve(__dirname, "..", "data");
 const MESSAGES_FILE = path.join(DATA_DIRECTORY, "messages.json");
 const MAX_BODY_SIZE = 10 * 1024;

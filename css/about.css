@@ -114,19 +114,131 @@
 
     0 0 30px var(--glow);
 
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
 }
 
 
-
-.profile-image img{
+.profile-photo{
 
     width:100%;
 
     height:100%;
 
+    position:absolute;
+
+    inset:0;
+
     object-fit:cover;
 
     border-radius:50%;
+
+    animation:profileGlitchOne 10s steps(1, end) infinite;
+
+}
+
+
+.profile-photo-two{
+
+    opacity:0;
+
+    animation-name:profileGlitchTwo;
+
+}
+
+
+.profile-image::before,
+.profile-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    border-radius:inherit;
+
+    opacity:0;
+
+}
+
+
+.profile-image::before{
+
+    background:linear-gradient(90deg, transparent 0 18%, rgba(0,200,255,.72) 18% 24%, transparent 24% 58%, rgba(255,40,145,.58) 58% 64%, transparent 64%);
+
+    mix-blend-mode:screen;
+
+    animation:profileScanlines 10s steps(1, end) infinite;
+
+}
+
+
+.profile-image::after{
+
+    border:2px solid var(--secondary);
+
+    box-shadow:inset 4px 0 rgba(0,255,157,.75), inset -4px 0 rgba(255,55,150,.62);
+
+    animation:profileFrameGlitch 10s steps(1, end) infinite;
+
+}
+
+
+@keyframes profileGlitchOne{
+
+    0%, 44%, 100%{ opacity:1; transform:translate(0) scale(1); filter:none; }
+
+    45%{ opacity:1; transform:translate(-7px, 2px) scale(1.06); filter:hue-rotate(55deg) contrast(1.45); }
+
+    47%{ opacity:.72; transform:translate(6px, -2px) scale(1.03); filter:contrast(1.7) saturate(1.7); }
+
+    49%, 99%{ opacity:0; transform:translate(0) scale(1); }
+
+}
+
+
+@keyframes profileGlitchTwo{
+
+    0%, 48%{ opacity:0; transform:translate(0) scale(1); filter:none; }
+
+    49%{ opacity:.76; transform:translate(7px, -2px) scale(1.06); filter:hue-rotate(-45deg) contrast(1.5); }
+
+    51%{ opacity:1; transform:translate(-4px, 2px) scale(1.03); filter:contrast(1.45) saturate(1.5); }
+
+    53%, 94%{ opacity:1; transform:translate(0) scale(1); filter:none; }
+
+    95%{ opacity:.72; transform:translate(5px, -2px) scale(1.05); filter:hue-rotate(45deg) contrast(1.5); }
+
+    97%{ opacity:0; transform:translate(-6px, 2px) scale(1.03); filter:contrast(1.7); }
+
+    99%, 100%{ opacity:0; transform:translate(0) scale(1); }
+
+}
+
+
+@keyframes profileScanlines{
+
+    0%, 44%, 53%, 94%, 100%{ opacity:0; transform:translateX(0); }
+
+    45%, 49%, 95%, 97%{ opacity:.78; transform:translateX(5px); }
+
+}
+
+
+@keyframes profileFrameGlitch{
+
+    0%, 44%, 53%, 94%, 100%{ opacity:0; transform:translate(0); }
+
+    46%, 50%, 96%, 98%{ opacity:1; transform:translateX(-4px); }
 
 }
 

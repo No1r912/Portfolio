@@ -245,6 +245,7 @@ nav ul li a.active {
     position: relative;
     border-radius: var(--radius-md);
     background: var(--terminal-surface);
+    min-width: 0;
 }
 
 .terminal::after {
@@ -257,7 +258,11 @@ nav ul li a.active {
 
 .terminal-top { background: var(--terminal-top); }
 .terminal-body { padding: clamp(24px, 3vw, 34px); }
-.terminal-body pre { font-size: clamp(.78rem, 1.1vw, .95rem); }
+.terminal-body pre {
+    font-size: clamp(.78rem, 1.1vw, .95rem);
+    overflow-wrap: anywhere;
+    tab-size: 2;
+}
 
 .btn-primary, .btn-secondary {
     min-height: 52px;
@@ -355,7 +360,7 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
     .background-grid, .mouse-glow, #particles-js, .scroll-indicator { display: none; }
     .hero-orbits { display: none; }
     .hero {
-        min-height: 100svh;
+        min-height: auto;
         gap: 34px;
         padding-top: 132px;
         padding-bottom: 70px;
@@ -374,7 +379,59 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
     .project-toolbar { margin-bottom: 38px; }
 }
 
+/* Keep the console readable without allowing its desktop proportions to
+   dominate or overflow narrow phones. */
+@media (max-width: 520px) {
+    .hero {
+        gap: 28px;
+        padding-top: 118px;
+        padding-bottom: 58px;
+    }
+
+    .hero-left,
+    .hero-right {
+        width: 100%;
+    }
+
+    .terminal {
+        width: 100%;
+        border-radius: 16px;
+    }
+
+    .terminal-top {
+        gap: 7px;
+        padding: 13px 15px;
+    }
+
+    .terminal-top p {
+        min-width: 0;
+        margin-left: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: .72rem;
+    }
+
+    .terminal-body {
+        padding: 18px 16px;
+    }
+
+    .terminal-body pre {
+        margin: 0;
+        font-size: clamp(.68rem, 3.25vw, .78rem);
+        line-height: 1.62;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero { padding-top: 104px; }
+    .terminal-top p { font-size: .66rem; }
+    .terminal-body { padding: 16px 14px; }
+    .terminal-body pre { font-size: .66rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
     .fade-in { opacity: 1; transform: none; }
+    .profile-photo-two { display: none; }
 }
