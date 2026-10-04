@@ -1,4 +1,4 @@
-# Hazwan | Personal Portfolio
+# Personal Portfolio
 
 A personal portfolio website showcasing my technical skills, projects, and experience in **IT support, networking, system administration, and cybersecurity**.
 
