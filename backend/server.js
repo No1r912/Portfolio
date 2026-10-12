@@ -43,11 +43,13 @@ function cleanText(value) { return typeof value === "string" ? value.trim().repl
 function validateMessage(input) {
     const name = cleanText(input.name);
     const email = cleanText(input.email).toLowerCase();
+    const subject = cleanText(input.subject) || "General inquiry";
     const message = typeof input.message === "string" ? input.message.trim() : "";
     if (name.length < 2 || name.length > 80) return "Please enter a name between 2 and 80 characters.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) return "Please enter a valid email address.";
+    if (subject.length < 2 || subject.length > 100) return "Please enter a subject between 2 and 100 characters.";
     if (message.length < 10 || message.length > 2000) return "Your message must be between 10 and 2,000 characters.";
-    return { name, email, message };
+    return { name, email, subject, message };
 }
 
 function saveMessage(message) {

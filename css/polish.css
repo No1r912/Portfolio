@@ -433,5 +433,250 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
     .fade-in { opacity: 1; transform: none; }
-    .profile-photo-two { display: none; }
+}
+
+/* Let the hero and terminal contract naturally instead of clipping on short,
+   narrow viewports. */
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+.hero-left,
+.hero-right {
+    min-width: 0;
+}
+
+.terminal-body pre {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+    }
+}
+
+.terminal {
+    animation: float 6s ease-in-out infinite, terminalGlow 5.5s ease-in-out infinite;
+}
+
+.terminal-body pre::after {
+    content: "";
+    display: inline-block;
+    width: .48em;
+    height: .9em;
+    margin-left: .25em;
+    vertical-align: -.1em;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--glow);
+    animation: terminalCursorBlink 1.2s steps(2, start) infinite;
+}
+
+@keyframes terminalGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 157, .20); }
+    50% { box-shadow: 0 0 40px rgba(0, 200, 255, .22); }
+}
+
+@keyframes terminalCursorBlink {
+    0%, 48% { opacity: 1; }
+    49%, 100% { opacity: .15; }
+}
+
+.orbit-symbol {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    min-height: 34px;
+    padding: 0 8px;
+    border: 1px solid rgba(0, 200, 255, .2);
+    border-radius: 10px;
+    background: rgba(7, 19, 35, .35);
+    color: var(--secondary);
+    font: 500 .76rem/1 var(--mono);
+    letter-spacing: .03em;
+    opacity: .48;
+    pointer-events: none;
+    animation: symbolDrift 9s ease-in-out infinite;
+}
+
+.orbit-symbol-one { top: 42%; right: 5%; animation-delay: -2s; }
+.orbit-symbol-two { top: 61%; right: 42%; color: var(--primary); animation-delay: -5s; }
+.orbit-symbol-three { right: 21%; bottom: 12%; animation-delay: -7s; }
+
+@keyframes symbolDrift {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+    50% { transform: translate3d(0, -10px, 0) rotate(3deg); }
+}
+
+#particles-js {
+    opacity: .28;
+    pointer-events: none;
+    transition: opacity .3s ease;
+}
+
+.scroll-progress {
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .12s linear;
+    pointer-events: none;
+}
+
+body.page-hidden #particles-js {
+    opacity: 0;
+}
+
+body.page-hidden .orbit-symbol {
+    animation-play-state: paused;
+}
+
+@media (max-width: 1100px) {
+    .orbit-symbol-two { right: 36%; }
+}
+
+@media (min-width: 521px) and (max-width: 1100px) {
+    .hero-left { width: 100%; }
+    .hero-right {
+        width: min(100%, 600px);
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .terminal { animation: none; }
+    .terminal-body pre::after { animation: none; opacity: .75; }
+}
+
+.hero-identity {
+    min-width: 6.2ch;
+    white-space: nowrap;
+    color: var(--primary);
+    background: linear-gradient(100deg, var(--primary) 8%, #8affd4 48%, var(--secondary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 14px rgba(0, 255, 157, .22));
+    animation: none;
+}
+
+.hero-identity::before,
+.hero-identity::after {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    mix-blend-mode: screen;
+    text-shadow: none;
+}
+
+.hero-identity::before {
+    color: var(--secondary);
+    -webkit-text-fill-color: currentColor;
+    text-shadow: -3px 0 rgba(0, 200, 255, .9);
+}
+
+.hero-identity::after {
+    color: var(--primary);
+    -webkit-text-fill-color: currentColor;
+    text-shadow: 3px 0 rgba(0, 255, 157, .85);
+}
+
+.hero-identity.is-glitching {
+    animation: identityNameGlitch 320ms steps(1, end) both;
+}
+
+.hero-identity.is-glitching::before {
+    animation: identityNameSliceCyan 320ms steps(1, end) both;
+}
+
+.hero-identity.is-glitching::after {
+    animation: identityNameSliceGreen 320ms steps(1, end) both;
+}
+
+@keyframes identityNameGlitch {
+    0%, 100% { transform: translateX(0); }
+    18% { transform: translateX(-2px); }
+    42% { transform: translateX(2px); }
+    68% { transform: translateX(-1px); }
+}
+
+@keyframes identityNameSliceCyan {
+    0%, 100% { opacity: 0; clip-path: inset(0); transform: translateX(0); }
+    18%, 58% { opacity: .8; clip-path: inset(12% 0 66%); transform: translateX(-3px); }
+    38% { opacity: .7; clip-path: inset(58% 0 20%); transform: translateX(3px); }
+    78% { opacity: .6; clip-path: inset(38% 0 42%); transform: translateX(-2px); }
+}
+
+@keyframes identityNameSliceGreen {
+    0%, 100% { opacity: 0; clip-path: inset(0); transform: translateX(0); }
+    28%, 72% { opacity: .75; clip-path: inset(70% 0 10%); transform: translateX(3px); }
+    48% { opacity: .65; clip-path: inset(30% 0 48%); transform: translateX(-3px); }
+}
+
+.profile-image[data-identity="hazwan"] .profile-photo-one {
+    opacity: 0;
+}
+
+.profile-image[data-identity="hazwan"] .profile-photo-two {
+    opacity: 1;
+}
+
+.profile-image.is-glitching .profile-photo {
+    animation: identityPhotoGlitch 320ms steps(1, end) both;
+}
+
+.profile-image.is-glitching::before {
+    background: linear-gradient(90deg, transparent 0 18%, rgba(0, 200, 255, .65) 18% 24%, transparent 24% 58%, rgba(0, 255, 157, .5) 58% 64%, transparent 64%);
+    opacity: 1;
+    animation: identityPhotoSlices 320ms steps(1, end) both;
+}
+
+.profile-image.is-glitching::after {
+    box-shadow: inset 4px 0 rgba(0, 255, 157, .75), inset -4px 0 rgba(0, 200, 255, .62);
+    opacity: 1;
+    animation: identityFrameGlitch 320ms steps(1, end) both;
+}
+
+@keyframes identityPhotoGlitch {
+    0%, 100% { transform: translateX(0); filter: none; }
+    22% { transform: translateX(-3px); filter: hue-rotate(20deg) contrast(1.25); }
+    48% { transform: translateX(3px); filter: saturate(1.35); }
+    74% { transform: translateX(-1px); filter: contrast(1.18); }
+}
+
+@keyframes identityPhotoSlices {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    22%, 64% { opacity: .65; transform: translateX(3px); }
+    46% { opacity: .4; transform: translateX(-3px); }
+}
+
+@keyframes identityFrameGlitch {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    32%, 70% { opacity: .85; transform: translateX(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-identity,
+    .hero-identity::before,
+    .hero-identity::after,
+    .profile-image .profile-photo,
+    .profile-image::before,
+    .profile-image::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .hero-identity::before,
+    .hero-identity::after,
+    .profile-image::before,
+    .profile-image::after {
+        opacity: 0 !important;
+    }
 }

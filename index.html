@@ -21,6 +21,8 @@
 
 <body>
 
+    <div class="scroll-progress" aria-hidden="true"></div>
+
     <!-- Loading Screen -->
     <div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio" aria-busy="true">
 
@@ -156,6 +158,9 @@
             <span class="orbit-object orbit-one"><i class="fas fa-code"></i></span>
             <span class="orbit-object orbit-two"><i class="fas fa-shield-halved"></i></span>
             <span class="orbit-object orbit-three"></span>
+            <span class="orbit-symbol orbit-symbol-one">{ }</span>
+            <span class="orbit-symbol orbit-symbol-two">&gt;_</span>
+            <span class="orbit-symbol orbit-symbol-three">01</span>
         </div>
 
         <div class="hero-left">
@@ -170,7 +175,7 @@
 
                 Hi, I'm
 
-                <span class="glitch" data-text="Hazwan">Hazwan</span>
+                <span class="glitch hero-identity" id="hero-identity" data-text="No1r" aria-label="No1r">No1r</span>
 
             </h1>
 
@@ -326,11 +331,11 @@ Learning...
 
         <div class="about-card glass">
 
-            <div class="profile-image" aria-label="Profile photographs of Hazwan">
+            <div class="profile-image" data-identity="no1r" data-no1r-image="Images/profile.jpg" data-hazwan-image="Images/profile2.jpg" role="img" aria-label="Profile photo for No1r">
 
-                <!-- Replace these two src values with your preferred profile photos. -->
-                <img class="profile-photo profile-photo-one" loading="lazy" decoding="async" src="Images/profile.jpg" alt="Hazwan">
-                <img class="profile-photo profile-photo-two" loading="lazy" decoding="async" src="Images/profile.jpg" alt="Hazwan in a second profile photo">
+                <!-- Example stock portrait; replace it with Hazwan's own image when ready. -->
+                <img class="profile-photo profile-photo-one" loading="eager" decoding="async" src="Images/profile.jpg" alt="">
+                <img class="profile-photo profile-photo-two" loading="eager" decoding="async" src="Images/profile2.jpg" alt="">
 
             </div>
 
@@ -2100,384 +2105,90 @@ Learning...
             </div>
 
 
-            <!-- ========================================= -->
-            <!-- CONTACT TWO-COLUMN AREA -->
-            <!-- ========================================= -->
-
-            <div class="contact-layout">
-
-
-                <!-- ===================================== -->
-                <!-- LEFT: CONNECTION CARDS -->
-                <!-- ===================================== -->
-
-                <div class="contact-left">
-
-                    <div class="connection-core">
-
-
-                        <!-- CORE RINGS -->
-
-                        <div class="core-ring ring-one"></div>
-
-                        <div class="core-ring ring-two"></div>
-
-                        <div class="core-ring ring-three"></div>
-
-
-                        <!-- CORE -->
-
-                        <div class="core-center">
-
-                            <i class="fas fa-shield-halved"></i>
-
-                            <span>
-                                CONNECT
-                            </span>
-
-                        </div>
-
-
-                        <!-- CONNECTION LINES -->
-
-                        <span class="connection-line line-email"></span>
-
-                        <span class="connection-line line-github"></span>
-
-                        <span class="connection-line line-linkedin"></span>
-
-                        <span class="connection-line line-discord"></span>
-
-
-                        <!-- EMAIL -->
-
-                        <a
-                            href="mailto:hazwankhairol@gmail.com"
-                            class="connection-node node-email">
-
-                            <div class="node-icon">
-
-                                <i class="fas fa-envelope"></i>
-
-                            </div>
-
-                            <div class="node-info">
-
-                                <span>
-                                    EMAIL
-                                </span>
-
-                                <strong>
-                                    Direct Channel
-                                </strong>
-
-                            </div>
-
-                            <i class="fas fa-arrow-up-right-from-square node-arrow"></i>
-
-                        </a>
-
-
-                        <!-- GITHUB -->
-
-                        <a
-                            href="https://github.com/No1r912"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="connection-node node-github">
-
-                            <div class="node-icon">
-
-                                <i class="fab fa-github"></i>
-
-                            </div>
-
-                            <div class="node-info">
-
-                                <span>
-                                    GITHUB
-                                </span>
-
-                                <strong>
-                                    Projects & Code
-                                </strong>
-
-                            </div>
-
-                            <i class="fas fa-arrow-up-right-from-square node-arrow"></i>
-
-                        </a>
-
-
-                        <!-- LINKEDIN -->
-
-                        <a
-                            href="https://www.linkedin.com/in/hazwan-khairol-b69534423"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="connection-node node-linkedin">
-
-                            <div class="node-icon">
-
-                                <i class="fab fa-linkedin"></i>
-
-                            </div>
-
-                            <div class="node-info">
-
-                                <span>
-                                    LINKEDIN
-                                </span>
-
-                                <strong>
-                                    Professional Network
-                                </strong>
-
-                            </div>
-
-                            <i class="fas fa-arrow-up-right-from-square node-arrow"></i>
-
-                        </a>
-
-
-                        <!-- DISCORD -->
-
-                        <div
-                            class="connection-node node-discord">
-
-                            <div class="node-icon">
-
-                                <i class="fab fa-discord"></i>
-
-                            </div>
-
-                            <div class="node-info">
-
-                                <span>
-                                    DISCORD
-                                </span>
-
-                                <strong>
-                                    Community Channel
-                                </strong>
-
-                            </div>
-
-                            <span class="node-status">
-                                PRIVATE
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- ===================================== -->
-                <!-- RIGHT: CONTACT INFORMATION -->
-                <!-- ===================================== -->
-
-                <div class="contact-right">
-
-
-                    <div class="contact-info-header">
-
+            <div class="contact-cards">
+
+                <article class="contact-card">
+                    <div class="contact-card-heading">
+                        <span class="contact-card-icon" aria-hidden="true"><i class="fas fa-envelope"></i></span>
                         <div>
-
-                            <span class="info-label">
-                                CONTACT PROFILE
-                            </span>
-
-                            <h3>
-                                Contact Information
-                            </h3>
-
+                            <span class="info-label">DIRECT CHANNEL</span>
+                            <h3>Contact Information</h3>
                         </div>
-
-                        <i class="fas fa-address-card"></i>
-
                     </div>
-
-
-                    <div class="contact-info-panel active">
-
-
-                        <!-- NAME -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-user"></i>
-                                NAME
-                            </span>
-
-                            <strong>
-                                Hazwan
-                            </strong>
-
+                    <p>Have a question, opportunity, or idea in mind? I would be glad to hear from you.</p>
+                    <div class="contact-email-detail">
+                        <i class="fas fa-at" aria-hidden="true"></i>
+                        <div>
+                            <span>Email</span>
+                            <a href="mailto:hazwankhairol@gmail.com">hazwankhairol@gmail.com</a>
                         </div>
-
-
-                        <!-- EMAIL -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-envelope"></i>
-                                EMAIL
-                            </span>
-
-                            <strong>
-                                hazwankhairol@gmail.com
-                            </strong>
-
-                        </div>
-
-
-                        <!-- LINKEDIN -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fab fa-linkedin"></i>
-                                LINKEDIN
-                            </span>
-
-                            <strong>
-                                Hazwan Khairol
-                            </strong>
-
-                        </div>
-
-
-                        <!-- GITHUB -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fab fa-github"></i>
-                                GITHUB
-                            </span>
-
-                            <strong>
-                                github.com/No1r912
-                            </strong>
-
-                        </div>
-
-
-                        <!-- DISCORD -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fab fa-discord"></i>
-                                DISCORD
-                            </span>
-
-                            <strong>
-                                Private
-                            </strong>
-
-                        </div>
-
-
-                        <!-- LOCATION -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-location-dot"></i>
-                                LOCATION
-                            </span>
-
-                            <strong>
-                                Brunei Darussalam
-                            </strong>
-
-                        </div>
-
-
-                        <!-- ROLE -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-user-graduate"></i>
-                                ROLE
-                            </span>
-
-                            <strong>
-                                IT Student
-                            </strong>
-
-                        </div>
-
-
-                        <!-- FOCUS -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-shield-halved"></i>
-                                FOCUS
-                            </span>
-
-                            <strong>
-                                Cybersecurity
-                            </strong>
-
-                        </div>
-
-
-                        <!-- AVAILABILITY -->
-
-                        <div class="info-item">
-
-                            <span>
-                                <i class="fas fa-circle-check"></i>
-                                AVAILABILITY
-                            </span>
-
-                            <strong class="available">
-                                Open to Opportunities
-                            </strong>
-
-                        </div>
-
-
                     </div>
+                    <button type="button" class="copy-email" id="copy-email" data-email="hazwankhairol@gmail.com">
+                        <i class="far fa-copy" aria-hidden="true"></i>
+                        <span class="copy-label">Copy email</span>
+                    </button>
+                    <p class="copy-email-status" id="copy-email-status" aria-live="polite"></p>
+                </article>
 
+                <article class="contact-card">
+                    <div class="contact-card-heading">
+                        <span class="contact-card-icon" aria-hidden="true"><i class="fas fa-code-branch"></i></span>
+                        <div>
+                            <span class="info-label">WAYS TO COLLABORATE</span>
+                            <h3>Services &amp; Collaboration</h3>
+                        </div>
+                    </div>
+                    <p>Practical support and thoughtful solutions for people and small teams.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i><span>IT support &amp; troubleshooting</span></li>
+                        <li><i class="fas fa-network-wired" aria-hidden="true"></i><span>Networking &amp; system administration</span></li>
+                        <li><i class="fas fa-laptop-code" aria-hidden="true"></i><span>Website development</span></li>
+                        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Cybersecurity projects</span></li>
+                    </ul>
+                    <p class="contact-cta">Have a project in mind? Let&#39;s discuss it.</p>
+                </article>
+
+                <article class="contact-card contact-card-form">
+                    <div class="contact-card-heading">
+                        <span class="contact-card-icon" aria-hidden="true"><i class="fas fa-paper-plane"></i></span>
+                        <div>
+                            <span class="info-label">SEND A MESSAGE</span>
+                            <h3>Contact Form</h3>
+                        </div>
+                    </div>
                     <form class="contact-form" id="contact-form" novalidate>
-                        <span class="info-label">SEND A MESSAGE</span>
-
                         <div class="form-row">
-                            <label>
+                            <label for="contact-name">
                                 <span>Name</span>
-                                <input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required>
+                                <input id="contact-name" type="text" name="name" autocomplete="name" minlength="2" maxlength="80" placeholder="Your name" required>
                             </label>
-
-                            <label>
-                                <span>Email</span>
-                                <input type="email" name="email" autocomplete="email" maxlength="254" required>
+                            <label for="contact-email">
+                                <span>Email address</span>
+                                <input id="contact-email" type="email" name="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required>
                             </label>
                         </div>
-
-                        <label>
-                            <span>Message</span>
-                            <textarea name="message" rows="4" minlength="10" maxlength="2000" required></textarea>
+                        <label for="contact-subject">
+                            <span>Subject / project type</span>
+                            <select id="contact-subject" name="subject" required>
+                                <option value="" selected disabled>Choose a project type</option>
+                                <option value="IT Support & Troubleshooting">IT Support &amp; Troubleshooting</option>
+                                <option value="Networking & System Administration">Networking &amp; System Administration</option>
+                                <option value="Website Development">Website Development</option>
+                                <option value="Cybersecurity Project">Cybersecurity Project</option>
+                                <option value="Other Collaboration">Other Collaboration</option>
+                            </select>
                         </label>
-
+                        <label for="contact-message">
+                            <span>Message</span>
+                            <textarea id="contact-message" name="message" rows="4" minlength="10" maxlength="2000" placeholder="Tell me a little about what you have in mind..." required></textarea>
+                        </label>
                         <button type="submit" class="contact-submit">
-                            <i class="fas fa-paper-plane"></i> Send Transmission
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            <span class="submit-label">Send Message</span>
                         </button>
-
-                        <p id="contact-form-status" class="form-status" aria-live="polite"></p>
+                        <p id="contact-form-status" class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
                     </form>
-
-                </div>
+                </article>
 
             </div>
 
@@ -2529,67 +2240,48 @@ Learning...
 
     <div class="footer-container">
 
-        <div class="footer-logo">
-
-            <h2>Hazwan<span>.</span></h2>
-
-            <p>
-
-                Cybersecurity Learner • Web Developer •
-                Automation
-
-            </p>
-
+        <div class="footer-brand">
+            <a class="footer-logo" href="#home" aria-label="Hazwan, back to home">
+                <span class="footer-prompt" aria-hidden="true">&gt;_</span>
+                <span>Hazwan<span class="footer-brand-dot">.</span></span>
+            </a>
+            <p>Exploring IT support, networking, web development, and cybersecurity through hands-on projects.</p>
+            <div class="footer-terminal" aria-hidden="true">
+                <span><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i></span>
+                <code>hazwan@portfolio:~$ <b>keep learning</b></code>
+            </div>
         </div>
 
-        <div class="footer-links">
-
-            <h3>Quick Links</h3>
-
+        <nav class="footer-links" aria-label="Footer navigation">
+            <h3>Explore</h3>
             <a href="#home">Home</a>
-
             <a href="#about">About</a>
-
             <a href="#skills">Skills</a>
-
             <a href="#projects">Projects</a>
-
-            <a href="#education">Education</a>
-
-            <a href="#certificates">Certificates</a>
-
-        </div>
+            <a href="#contact">Contact</a>
+        </nav>
 
         <div class="footer-social">
-
-            <h3>Follow Me</h3>
-
-            <a href="https://github.com/No1r912"><i class="fab fa-github"></i></a>
-
-            <a href="https://www.linkedin.com/in/hazwan-khairol-b69534423"><i class="fab fa-linkedin"></i></a>
-
-            <a href="#"><i class="fas fa-envelope"></i></a>
-
-            <a href="#"><i class="fab fa-discord"></i></a>
-
+            <h3>Connect</h3>
+            <div class="footer-social-links">
+                <a href="https://github.com/No1r912" aria-label="Visit Hazwan's GitHub profile" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/hazwan-khairol-b69534423" aria-label="Visit Hazwan's LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:hazwankhairol@gmail.com" aria-label="Email Hazwan">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+            </div>
+            <a class="footer-email" href="mailto:hazwankhairol@gmail.com">hazwankhairol@gmail.com</a>
         </div>
 
     </div>
 
     <div class="footer-bottom">
-
-        <p>
-
-            © 2026 Hazwan. All Rights Reserved.
-
-        </p>
-
-        <p>
-
-            Designed & Developed by Hazwan
-
-        </p>
-
+        <p>&copy; <span id="copyright-year"></span> Hazwan. All rights reserved.</p>
+        <p class="footer-signoff">// Keep learning. Keep building.</p>
     </div>
 
 </footer>
@@ -2598,7 +2290,7 @@ Learning...
 <!-- BACK TO TOP -->
 <!-- ========================================= -->
 
-<button id="backToTop">
+<button id="backToTop" type="button" aria-label="Back to top">
 
     <i class="fas fa-arrow-up"></i>
 
@@ -2656,7 +2348,7 @@ Learning...
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-<script src="script.js"></script>
+<script src="main.js"></script>
 <script src="contact-form.js"></script>
 
 </body>
