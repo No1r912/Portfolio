@@ -62,12 +62,34 @@ nav ul li a {
     font-size: .88rem;
 }
 
-nav ul li a::after { display: none; }
+nav ul li a::after {
+    display: block;
+    left: 12px;
+    bottom: 4px;
+    width: calc(100% - 24px);
+    height: 2px;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .2s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: calc(100% - 24px);
+    transform: scaleX(1);
+}
 
 nav ul li a:hover,
 nav ul li a.active {
     background: var(--primary-soft);
     box-shadow: inset 0 0 0 1px rgba(0,255,157,.12);
+}
+
+.mobile-menu a.active {
+    color: var(--primary);
+    border-left: 2px solid var(--secondary);
+    padding-left: 10px;
 }
 
 .theme-btn, .menu-btn {

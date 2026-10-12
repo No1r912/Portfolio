@@ -81,105 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     LOADING SCREEN
 ======================================================*/
 
-window.addEventListener("load", () => {
-
-    const loader = document.getElementById("loader");
-    const progress = document.querySelector(".loading-bar span");
-    const progressTrack = document.querySelector(".loading-bar");
-    const percentage = document.getElementById("loader-percentage");
-    const access = document.querySelector(".access");
-    const text = document.getElementById("loader-text");
-    const steps = [...document.querySelectorAll("[data-loader-step]")];
-
-
-    // Stop if loader elements don't exist
-    if(!loader || !progress || !progressTrack || !percentage || !access || !text){
-        return;
-    }
-
-    const stages = [
-        { message: "Preparing portfolio interface...", progress: 18 },
-        { message: "Loading visual assets...", progress: 43 },
-        { message: "Starting interactive modules...", progress: 71 },
-        { message: "Establishing secure session...", progress: 92 },
-        { message: "System ready.", progress: 100 }
-    ];
-
-    const setProgress = (value) => {
-        const roundedValue = Math.round(value);
-        progress.style.transform = `scaleX(${value / 100})`;
-        progressTrack.setAttribute("aria-valuenow", roundedValue);
-        percentage.textContent = `${roundedValue}%`;
-    };
-
-    const animateProgress = (from, to, duration) => new Promise((resolve) => {
-        const startTime = performance.now();
-        progress.classList.add("is-animating");
-
-        const tick = (currentTime) => {
-            const elapsed = Math.min((currentTime - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - elapsed, 4);
-            setProgress(from + (to - from) * eased);
-
-            if (elapsed < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                progress.classList.remove("is-animating");
-                resolve();
-            }
-        };
-
-        requestAnimationFrame(tick);
-    });
-
-    const updateMessage = (message) => {
-        text.classList.remove("is-updating");
-        void text.offsetWidth;
-        text.textContent = message;
-        text.classList.add("is-updating");
-    };
-
-    const finish = () => {
-        access.textContent = "ACCESS GRANTED";
-        loader.setAttribute("aria-busy", "false");
-
-        window.setTimeout(() => {
-            loader.classList.add("loader-hide");
-            window.setTimeout(() => { loader.hidden = true; }, 650);
-        }, 350);
-    };
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        steps.forEach((step) => step.classList.add("is-complete"));
-        updateMessage(stages.at(-1).message);
-        setProgress(100);
-        finish();
-        return;
-    }
-
-    const runLoader = async () => {
-        let currentProgress = 0;
-
-        for (const [index, stage] of stages.entries()) {
-            updateMessage(stage.message);
-            await animateProgress(currentProgress, stage.progress, index === stages.length - 1 ? 480 : 540);
-            currentProgress = stage.progress;
-            steps[index - 1]?.classList.add("is-complete");
-
-            if (index < stages.length - 1) {
-                await new Promise((resolve) => window.setTimeout(resolve, 100));
-            }
-        }
-
-        finish();
-    };
-
-    runLoader();
-
-
-});
-
-
 let scrollFrame = null;
 
 function handleScroll(){
@@ -385,7 +286,7 @@ function activeNav(){
 
     sections.forEach(section => {
 
-        const sectionTop = section.offsetTop;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
         if(marker >= sectionTop){
 
@@ -398,13 +299,13 @@ function activeNav(){
 
     links.forEach(link=>{
 
-        link.classList.remove("active");
+        const isCurrent = link.getAttribute("href") === "#" + current;
+        link.classList.toggle("active", isCurrent);
 
-
-        if(link.getAttribute("href") === "#" + current){
-
-            link.classList.add("active");
-
+        if (isCurrent) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
         }
 
     });
@@ -875,6 +776,12 @@ window.addEventListener("load", () => {
 const filterButtons = document.querySelectorAll(".project-filter button");
 const projectCards = document.querySelectorAll(".project-card");
 const searchInput = document.getElementById("project-search");
+const projectSearchData = [...projectCards].map((card) => ({
+    card,
+    category: card.dataset.category?.toLowerCase() || "none",
+    title: card.querySelector("h3")?.textContent.toLowerCase() || "",
+    description: card.querySelector("p")?.textContent.toLowerCase() || ""
+}));
 
 let currentFilter = "all";
 
@@ -931,65 +838,18 @@ function filterProjects(){
     let visibleProjects = 0;
 
 
-    projectCards.forEach(card => {
-
-
-        const category = card.dataset.category
-            ? card.dataset.category.toLowerCase()
-            : "none";
-
-
-        const title = card.querySelector("h3")
-            ? card.querySelector("h3").textContent.toLowerCase()
-            : "";
-
-
-        const description = card.querySelector("p")
-            ? card.querySelector("p").textContent.toLowerCase()
-            : "";
-
-
-
+    projectSearchData.forEach(({ card, category, title, description }) => {
         const matchesFilter =
             currentFilter === "all" ||
             category === currentFilter;
-
-
 
         const matchesSearch =
             title.includes(searchValue) ||
             description.includes(searchValue);
 
-
-
-        if(matchesFilter && matchesSearch){
-
-
-            card.style.display = "block";
-
-
-            setTimeout(()=>{
-
-                card.style.opacity="1";
-                card.style.transform="translateY(0)";
-
-            },100);
-
-
-            visibleProjects++;
-
-
-        }
-
-        else{
-
-
-            card.style.display="none";
-
-
-        }
-
-
+        const isVisible = matchesFilter && matchesSearch;
+        card.hidden = !isVisible;
+        if (isVisible) visibleProjects++;
     });
 
 
@@ -1026,7 +886,7 @@ filterButtons.forEach(button => {
 ======================================================*/
 
 if(searchInput){
-    searchInput.addEventListener("keyup", filterProjects);
+    searchInput.addEventListener("input", filterProjects);
 }
 
 /*======================================================
@@ -1069,6 +929,169 @@ function showNoProjectsMessage(count){
 
     }
 
+}
+
+/*======================================================
+    PROJECT PREVIEW LOADING
+======================================================*/
+
+const projectsSection = document.getElementById("projects");
+const projectLoadingPanel = document.getElementById("project-loading");
+const projectLoadingMessage = document.getElementById("project-loading-message");
+const projectLoadingRetry = document.getElementById("project-loading-retry");
+const projectImageRetryCounts = new WeakMap();
+const PROJECT_IMAGE_TIMEOUT_MS = 20000;
+let failedProjectImages = [];
+let projectPreviewLoadingStarted = false;
+
+function setProjectImageState(image, state) {
+    const frame = image.closest(".project-image");
+    if (!frame) return;
+
+    frame.classList.toggle("is-loading", state === "loading");
+    frame.classList.toggle("has-load-error", state === "error");
+    frame.setAttribute("aria-busy", String(state === "loading"));
+}
+
+document.querySelectorAll("#projects .project-slider").forEach((image) => {
+    image.addEventListener("load", () => setProjectImageState(image, "loaded"));
+    image.addEventListener("error", () => setProjectImageState(image, "error"));
+    setProjectImageState(
+        image,
+        image.complete ? (image.naturalWidth > 0 ? "loaded" : "error") : "loading"
+    );
+});
+
+function getInitialProjectPreviews() {
+    const featuredImage = document.querySelector(".featured-project .project-slider");
+    const grid = document.querySelector(".project-grid");
+    const cards = [...(grid?.querySelectorAll(".project-card") || [])];
+    const firstCardTop = cards[0]?.getBoundingClientRect().top;
+    const firstRowImages = cards
+        .filter((card) => Math.abs(card.getBoundingClientRect().top - firstCardTop) < 2)
+        .map((card) => card.querySelector(".project-slider"))
+        .filter(Boolean);
+
+    return [featuredImage, ...firstRowImages].filter(Boolean);
+}
+
+function waitForProjectImage(image, source = null) {
+    return new Promise((resolve) => {
+        let timeoutId;
+        const finish = () => {
+            image.removeEventListener("load", finish);
+            image.removeEventListener("error", finish);
+            window.clearTimeout(timeoutId);
+            resolve(image.naturalWidth > 0);
+        };
+
+        image.addEventListener("load", finish);
+        image.addEventListener("error", finish);
+        image.loading = "eager";
+        timeoutId = window.setTimeout(finish, PROJECT_IMAGE_TIMEOUT_MS);
+        if (source) image.src = source;
+
+        if (image.complete) finish();
+    });
+}
+
+function showProjectLoading(message, isError = false) {
+    if (!projectLoadingPanel || !projectsSection) return;
+
+    projectLoadingPanel.hidden = false;
+    projectLoadingPanel.classList.toggle("has-error", isError);
+    projectLoadingMessage.textContent = message;
+    projectLoadingRetry.hidden = !isError;
+    projectLoadingRetry.disabled = false;
+    projectsSection.setAttribute("aria-busy", String(!isError));
+}
+
+function settleProjectPreviews(results, images) {
+    failedProjectImages = images.filter((image, index) =>
+        !results[index] && image.naturalWidth === 0
+    );
+
+    if (failedProjectImages.length > 0) {
+        showProjectLoading("Some project previews could not be loaded.", true);
+        return;
+    }
+
+    projectsSection?.setAttribute("aria-busy", "false");
+    if (projectLoadingPanel) projectLoadingPanel.hidden = true;
+}
+
+async function loadInitialProjectPreviews() {
+    if (projectPreviewLoadingStarted) return;
+    projectPreviewLoadingStarted = true;
+
+    const images = getInitialProjectPreviews();
+    const pending = images.filter((image) => !image.complete);
+    const failed = images.filter((image) => image.complete && image.naturalWidth === 0);
+
+    if (pending.length === 0) {
+        if (failed.length > 0) {
+            failedProjectImages = failed;
+            showProjectLoading("Some project previews could not be loaded.", true);
+        } else {
+            projectsSection?.setAttribute("aria-busy", "false");
+        }
+        return;
+    }
+
+    showProjectLoading("INITIALIZING PROJECTS...");
+    const results = await Promise.all(pending.map((image) => waitForProjectImage(image)));
+    const resultByImage = new Map(pending.map((image, index) => [image, results[index]]));
+    settleProjectPreviews(
+        images.map((image) => resultByImage.get(image) ?? image.naturalWidth > 0),
+        images
+    );
+}
+
+async function retryProjectPreviews() {
+    failedProjectImages = failedProjectImages.filter((image) => image.naturalWidth === 0);
+    if (failedProjectImages.length === 0) {
+        settleProjectPreviews([], []);
+        return;
+    }
+
+    const retryImages = [...failedProjectImages];
+    projectLoadingRetry.disabled = true;
+    showProjectLoading("RETRYING PROJECT PREVIEWS...");
+    const requests = retryImages.map((image) => {
+        const original = image.dataset.projectOriginalSrc || image.getAttribute("src");
+        image.dataset.projectOriginalSrc = original;
+        const retryUrl = new URL(original, document.baseURI);
+        const attempt = (projectImageRetryCounts.get(image) || 0) + 1;
+        projectImageRetryCounts.set(image, attempt);
+        retryUrl.searchParams.set("retry", String(attempt));
+
+        return waitForProjectImage(image, retryUrl.href);
+    });
+
+    const results = await Promise.all(requests);
+    settleProjectPreviews(results, retryImages);
+    projectLoadingRetry.disabled = false;
+}
+
+projectLoadingRetry?.addEventListener("click", retryProjectPreviews);
+
+if (projectsSection && "IntersectionObserver" in window) {
+    const projectLoadingObserver = new IntersectionObserver((entries, observer) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        loadInitialProjectPreviews();
+    }, { rootMargin: "0px 0px 15% 0px" });
+
+    projectLoadingObserver.observe(projectsSection);
+} else if (projectsSection) {
+    const checkProjectVisibility = () => {
+        if (projectsSection.getBoundingClientRect().top > window.innerHeight) return;
+        window.removeEventListener("scroll", checkProjectVisibility);
+        loadInitialProjectPreviews();
+    };
+
+    window.addEventListener("scroll", checkProjectVisibility, { passive: true });
+    checkProjectVisibility();
 }
 
 /*======================================================
@@ -1207,6 +1230,7 @@ function updateProgressBar(){
             ? Math.min(1, Math.max(0, scrollTop / height))
             : 0;
         progressBar.style.transform = `scaleX(${progress})`;
+        backToTop?.style.setProperty("--scroll-progress", `${progress * 100}%`);
 
     }
 
@@ -1389,64 +1413,75 @@ comingProjects.forEach(card => {
     IMAGE SLIDER
 ======================================================*/
 
-document.querySelectorAll(".lab-slider").forEach(slider => {
+const projectSliders = [...document.querySelectorAll(".lab-slider")].flatMap((slider) => {
+    const image = slider.querySelector(".project-slider");
+    const images = slider.dataset.images?.split(",").map((src) => src.trim()).filter(Boolean) || [];
+    if (!image || images.length < 2) return [];
 
-    const imageElement = slider.querySelector(".project-slider");
-
-
-    if(!imageElement || !slider.dataset.images){
-        return;
-    }
-
-
-    const images = slider.dataset.images
-        .split(",")
-        .map(img => img.trim());
-
-
-    let index = 0;
-
-
-    setInterval(()=>{
-
-
-        index++;
-
-
-        if(index >= images.length){
-
-            index = 0;
-
-        }
-
-
-        // fade out
-
-        imageElement.style.opacity = "0";
-
-
-        setTimeout(()=>{
-
-
-            imageElement.src = images[index];
-
-
-            imageElement.onload = ()=>{
-
-                imageElement.style.opacity = "1";
-
-            };
-
-
-        },300);
-
-
-
-    },3000);
-
-
-
+    return [{
+        slider,
+        image,
+        images,
+        index: Math.max(0, images.findIndex((source) =>
+            new URL(source, document.baseURI).pathname ===
+            new URL(image.getAttribute("src"), document.baseURI).pathname
+        )),
+        timer: null,
+        inView: false
+    }];
 });
+
+const projectMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const stopProjectSlider = (state) => {
+    if (state.timer === null) return;
+    window.clearInterval(state.timer);
+    state.timer = null;
+};
+
+const advanceProjectSlider = (state) => {
+    const nextIndex = (state.index + 1) % state.images.length;
+    const nextImage = new Image();
+
+    nextImage.onload = () => {
+        state.image.style.opacity = "0";
+        window.setTimeout(() => {
+            state.index = nextIndex;
+            state.image.src = state.images[nextIndex];
+            state.image.style.opacity = "1";
+        }, 160);
+    };
+    nextImage.src = state.images[nextIndex];
+};
+
+const syncProjectSliders = () => {
+    const shouldRun = !document.hidden && !projectMotionPreference.matches;
+    projectSliders.forEach((state) => {
+        if (shouldRun && state.inView && state.timer === null) {
+            state.timer = window.setInterval(() => advanceProjectSlider(state), 4000);
+        } else if ((!shouldRun || !state.inView) && state.timer !== null) {
+            stopProjectSlider(state);
+        }
+    });
+};
+
+if ("IntersectionObserver" in window) {
+    const projectSliderObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const state = projectSliders.find(({ slider }) => slider === entry.target);
+            if (state) state.inView = entry.isIntersecting;
+        });
+        syncProjectSliders();
+    }, { rootMargin: "120px 0px" });
+
+    projectSliders.forEach(({ slider }) => projectSliderObserver.observe(slider));
+} else {
+    projectSliders.forEach((state) => { state.inView = true; });
+}
+
+document.addEventListener("visibilitychange", syncProjectSliders);
+projectMotionPreference.addEventListener("change", syncProjectSliders);
+syncProjectSliders();
 
 
 /*======================================================

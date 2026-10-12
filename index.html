@@ -23,48 +23,6 @@
 
     <div class="scroll-progress" aria-hidden="true"></div>
 
-    <!-- Loading Screen -->
-    <div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio" aria-busy="true">
-
-        <div class="loader-terminal">
-
-            <div class="terminal-header">
-                <div class="terminal-controls" aria-hidden="true">
-                    <span class="red"></span>
-                    <span class="yellow"></span>
-                    <span class="green"></span>
-                </div>
-                <span class="loader-window-title">hazwan@portfolio:~</span>
-            </div>
-
-            <div class="loader-body">
-
-                <div class="loader-meta">
-                    <span><i class="loader-indicator" aria-hidden="true"></i> SYSTEM BOOT</span>
-                    <span id="loader-percentage">0%</span>
-                </div>
-
-                <p id="loader-text">Preparing portfolio interface...</p>
-
-                <div class="loading-bar" role="progressbar" aria-label="Portfolio loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <span></span>
-                </div>
-
-                <ul class="loader-checklist" aria-label="Loading steps">
-                    <li data-loader-step>Interface loaded</li>
-                    <li data-loader-step>Visual assets ready</li>
-                    <li data-loader-step>Interactive modules online</li>
-                    <li data-loader-step>Secure session established</li>
-                </ul>
-
-                <p class="access">Waiting...</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
     <!-- ========================= -->
     <!-- Background -->
     <!-- ========================= -->
@@ -931,6 +889,26 @@ Learning...
 
     </div>
 
+    <div class="project-loading" id="project-loading" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <div class="project-loading-topline">
+            <span class="project-loading-heading">
+                <i class="fas fa-terminal" aria-hidden="true"></i>
+                <span>PROJECTS</span>
+            </span>
+            <span class="project-loading-code">SYS // PREVIEW ASSETS</span>
+        </div>
+        <p class="project-loading-message" id="project-loading-message">INITIALIZING PROJECTS...</p>
+        <div class="project-loading-track" aria-hidden="true"><span></span></div>
+        <div class="project-loading-meta">
+            <span>LOADING PROJECT PREVIEWS</span>
+            <span class="project-loading-cursor" aria-hidden="true">_</span>
+        </div>
+        <button class="project-loading-retry" id="project-loading-retry" type="button" hidden>
+            <i class="fas fa-rotate-right" aria-hidden="true"></i>
+            Retry previews
+        </button>
+    </div>
+
     <!-- ========================= -->
     <!-- Featured Project -->
     <!-- ========================= -->
@@ -1056,7 +1034,7 @@ Learning...
                 data-images="Images/teahaven/home.png,Images/teahaven/about.png,Images/teahaven/promotions.png,Images/teahaven/contact.png,Images/teahaven/gallery.png,Images/teahaven/chalux.png,Images/teahaven/guhe.png,Images/teahaven/dehoja.png,Images/teahaven/gongcha.png,Images/teahaven/tealive.png">
 
                     <img loading="lazy" decoding="async" class="project-slider"
-                    src="Images/teahaven/setup.png"
+                    src="Images/teahaven/home.png"
                     alt="Tea Haven Website Development Evidence">
 
                 </div>
@@ -1258,11 +1236,11 @@ Learning...
 
                 <div class="project-image lab-slider"
                 data-images="Images/System-Administration-Lab/setup.png,Images/System-Administration-Lab/file-management1.png,Images/System-Administration-Lab/file-management2.png,Images/System-Administration-Lab/user-permission1.png,Images/System-Administration-Lab/user-permission2.png,Images/System-Administration-Lab/user-management1.png,Images/System-Administration-Lab/user-management2.png,
-                Images/System-Administration-Lab/permission-management.png,Images/System-Administration-Lab/group-management1.png,Images/System-Administration-Lab/group-management2.png,Images/System-Administration-Lab/file-permission-management1.png,Images/System-Administration-Lab/user-permission-management2.png,Images/System-Administration-Lab/check-permission.png,
+                Images/System-Administration-Lab/permission-management.png,Images/System-Administration-Lab/group-management1.png,Images/System-Administration-Lab/group-management2.png,Images/System-Administration-Lab/file-permission-management1.png,Images/System-Administration-Lab/file-permission-management2.png,Images/System-Administration-Lab/check-permission.png,
                 Images/System-Administration-Lab/check-file-permission1.png,Images/System-Administration-Lab/check-file-permission2.png,Images/System-Administration-Lab/change-file-permission.png">
 
                     <img loading="lazy" decoding="async" class="project-slider"
-                    src="Images/system-admin/setup.png"
+                    src="Images/System-Administration-Lab/setup.png"
                     alt="System Administrator Lab Evidence">
 
                 </div>
@@ -1328,9 +1306,10 @@ Learning...
                 <div class="project-image lab-slider"
                 data-images="">
 
-                    <img loading="lazy" decoding="async" class="project-slider"
-                    src="Images/security-testing/setup.png"
-                    alt="Website Security Testing Lab Evidence">
+                    <div class="project-preview-empty" role="img" aria-label="No project preview available">
+                        <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                        <span>Preview coming soon</span>
+                    </div>
 
                 </div>
 
@@ -1395,7 +1374,7 @@ Learning...
                 data-images="Images/Password-Strength-Checker/setup.png,Images/Password-Strength-Checker/code-evidence1.png,Images/Password-Strength-Checker/code-evidence2.png">
 
                     <img loading="lazy" decoding="async" class="project-slider"
-                    src="Images/password-checker/setup.png"
+                    src="Images/Password-Strength-Checker/setup.png"
                     alt="Password Strength Checker Development Evidence">
 
                 </div>
@@ -1458,7 +1437,7 @@ Learning...
             data-images="Images/IT-Support-Simulation-Lab/ram-installed.jpeg,Images/IT-Support-Simulation-Lab/storage-space.png,Images/IT-Support-Simulation-Lab/system-verification.png">
 
                 <img loading="lazy" decoding="async" class="project-slider"
-                src="Images/it-support/setup.png"
+                src="Images/IT-Support-Simulation-Lab/ram-installed.jpeg"
                 alt="IT Support Project Evidence">
 
             </div>
@@ -2241,11 +2220,12 @@ Learning...
     <div class="footer-container">
 
         <div class="footer-brand">
+            <span class="footer-section-label">01 <i>//</i> IDENTITY</span>
             <a class="footer-logo" href="#home" aria-label="Hazwan, back to home">
                 <span class="footer-prompt" aria-hidden="true">&gt;_</span>
                 <span>Hazwan<span class="footer-brand-dot">.</span></span>
             </a>
-            <p>Exploring IT support, networking, web development, and cybersecurity through hands-on projects.</p>
+            <p>IT support, networking, and cybersecurity—explored through hands-on projects and continuous learning.</p>
             <div class="footer-terminal" aria-hidden="true">
                 <span><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i></span>
                 <code>hazwan@portfolio:~$ <b>keep learning</b></code>
@@ -2253,7 +2233,7 @@ Learning...
         </div>
 
         <nav class="footer-links" aria-label="Footer navigation">
-            <h3>Explore</h3>
+            <h3><span>02</span> Navigation</h3>
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -2262,7 +2242,7 @@ Learning...
         </nav>
 
         <div class="footer-social">
-            <h3>Connect</h3>
+            <h3><span>03</span> Connect</h3>
             <div class="footer-social-links">
                 <a href="https://github.com/No1r912" aria-label="Visit Hazwan's GitHub profile" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github" aria-hidden="true"></i>
